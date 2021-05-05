@@ -1,0 +1,160 @@
+name: Run  azlogin checks in all Azure Cloud  
+on: workflow_dispatch
+
+env:
+  AZURE_WEBAPP_NAME: dotnetwebapplima    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  NUGET_VERSION: '5.3.1'                # set this to the node version to use
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+ 
+jobs: 
+  azure-public-cloud-test:
+    runs-on: windows-latest
+    steps:
+ 
+      - uses: actions/checkout@v2
+      
+      - name: Login to Azure Public Cloud with CLI (no evironment variable or enableAzPSSession )
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+        
+      - name: Login to Azure Public Cloud with AzPowershell (no evironment variable and  enableAzPSSession true)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+          enable-AzPSSession: true
+      - run: |
+            az account show     
+      
+      - name: Login to Azure Public Cloud with AzPowershell (no evironment variable and enableAzPSSession false)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+          enable-AzPSSession: false
+      - run: |
+            az account show 
+      
+      - name: Login to Azure Public Cloud with AzPowershell ( evironment variable set to AzureCloud and enableAzPSSession true)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+          environment: 'AzureCloud'
+          enable-AzPSSession: true
+      - run: |
+            az account show 
+      
+      - name: Login to Azure Public Cloud with az cli (evironment variable set to AzureCloud and  enableAzPSSession false)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+          environment: 'AzureCloud'
+          enable-AzPSSession: false
+      - run: |
+            az account show 
+      
+      - name: Login to Azure Public Cloud with az cli (evironment variable set to AzureCloud and  no value for enableAzPSSession)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CLOUD_CREDENTIALS }}
+          environment: 'AzureCloud'
+      - run: |
+            az account show
+  
+  azure-us-gov-cloud-test:
+     runs-on: windows-latest
+     steps:
+ 
+      - uses: actions/checkout@v2    
+      
+      - name: Login to Azure US Gov Cloud with CLI ( evironment variable set to  AzureUSGovernment  and  enableAzPSSession false)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
+          environment: 'AzureUSGovernment'
+          enable-AzPSSession: false
+      - run: |
+            az account show 
+      
+      - name: Login to Azure US Gov Cloud with Az Powershell (  evironment variable set to  AzureUSGovernment  and  enableAzPSSession true)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
+          environment: 'AzureUSGovernment'
+          enable-AzPSSession: true
+      - run: |
+           az account show 
+      
+      - name: Login to Azure US Gov Cloud with az cli (  evironment variable set to  AzureUSGovernment  and  no value for enableAzPSSession )
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
+          environment: 'AzureUSGovernment'
+      - run: |
+            az account show 
+  
+  azure-china-cloud-test:
+     runs-on: windows-latest
+     steps:
+ 
+      - uses: actions/checkout@v2  
+      
+      - name: Login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud  and  enableAzPSSession false)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+          enable-AzPSSession: false
+      - run: |
+            az account show  
+      
+      - name: Login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+          enable-AzPSSession: true
+      - run: |
+           az account show 
+    
+      - name: Login to Azure China  Cloud with az cli (  evironment variable set to  AzureChinaCloud  and  no value for enableAzPSSession )
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+      - run: |
+            az account show
+            
+      - name: Check case sensitivity for Az Powershell
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'aZuREChinAclOUD'
+          enable-AzPSSession: true
+      - run: |
+            az account show
+            
+      - name: Check case sensitivity for az cli
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'aZuREChinAclOUD'
+          enable-AzPSSession: false
+      - run: |
+            az account show
+            
+      - name: Check case sensitivity for az cli (no parameter passed)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AZURECHINACLOUD'
+      - run: |
+            az account show      
+      
+      - name: Testing invalid input (this should fail)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'azurefrance'
+      - run: |
+            az account show
