@@ -93,68 +93,68 @@ jobs:
       - run: |
             az account show 
   
-#   azure-china-cloud-test:
-#      runs-on: windows-latest
-#      steps:
+  azure-china-cloud-test:
+     runs-on: windows-latest
+     steps:
  
-#       - uses: actions/checkout@v2  
+      - uses: actions/checkout@v2  
       
-#       - name: Login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud  and  enableAzPSSession false)
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'AzureChinaCloud'
-#           enable-AzPSSession: false
-#       - run: |
-#             az account show  
+      - name: Login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud  and  enableAzPSSession false)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+          enable-AzPSSession: false
+      - run: |
+            az account show  
       
-#       - name: Login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'AzureChinaCloud'
-#           enable-AzPSSession: true
-#       - run: |
-#            az account show 
+      - name: Login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+          enable-AzPSSession: true
+      - run: |
+           az account show 
     
-#       - name: Login to Azure China  Cloud with az cli (  evironment variable set to  AzureChinaCloud  and  no value for enableAzPSSession )
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'AzureChinaCloud'
-#       - run: |
-#             az account show
+      - name: Login to Azure China  Cloud with az cli (  evironment variable set to  AzureChinaCloud  and  no value for enableAzPSSession )
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AzureChinaCloud'
+      - run: |
+            az account show
             
-#       - name: Check case sensitivity for Az Powershell
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'aZuREChinAclOUD'
-#           enable-AzPSSession: true
-#       - run: |
-#             az account show
+      - name: Check case sensitivity for Az Powershell
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'aZuREChinAclOUD'
+          enable-AzPSSession: true
+      - run: |
+            az account show
             
-#       - name: Check case sensitivity for az cli
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'aZuREChinAclOUD'
-#           enable-AzPSSession: false
-#       - run: |
-#             az account show
+      - name: Check case sensitivity for az cli
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'aZuREChinAclOUD'
+          enable-AzPSSession: false
+      - run: |
+            az account show
             
-#       - name: Check case sensitivity for az cli (no parameter passed)
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'AZURECHINACLOUD'
-#       - run: |
-#             az account show      
+      - name: Check case sensitivity for az cli (no parameter passed)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'AZURECHINACLOUD'
+      - run: |
+            az account show      
       
-#       - name: Testing invalid input (this should fail)
-#         uses: azure/login@releases/azcloud-v1
-#         with:
-#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-#           environment: 'azurefrance'
-#       - run: |
-#             az account show
+      - name: Testing invalid input (this should fail)
+        uses: azure/login@releases/azcloud-v1
+        with:
+          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+          environment: 'azurefrance'
+      - run: |
+            az account show
