@@ -1,0 +1,51 @@
+name: Run Azure Login Integration Tests
+on: workflow_dispatch
+#   push:
+#     paths:
+#       - '.github/workflows/run-azure-login-action-integration-tests.yml'
+
+jobs: 
+  az-login-test:
+    runs-on: windows-latest
+    steps:
+      - name: 'Az CLI login with subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - run: |
+          az account show
+#          az webapp list
+          
+      - name: 'Az CLI login without subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_NO_SUB }}
+          allow-no-subscriptions: true
+          
+      - run: |
+          az account show
+          
+      - name: 'Azure PowerShell login with subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+          
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: "Get-AzContext"
+          azPSVersion: "latest"
+          
+      - name: 'Azure PowerShell login without subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS_NO_SUB}}
+          enable-AzPSSession: true
+          allow-no-subscriptions: true
+        
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: "Get-AzContext"
+          azPSVersion: "latest"
+          
