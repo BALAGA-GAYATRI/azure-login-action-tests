@@ -14,13 +14,13 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+#           enable-AzPSSession: true
           
       - run: |
           az account show
           pwd
           cat ~/.azure/accessTokens.json
-          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/
+          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/cli/
       - uses: azure/powershell@v1
         with:
           inlineScript: |
