@@ -15,11 +15,10 @@ jobs:
 #           enable-AzPSSession: true
           
       - run: |
-          az account show
-          Uninstall-AzureRm
-        
+          az account show        
       - uses: azure/powershell@v1
         with:
           inlineScript: |
+            Uninstall-AzureRm
             Get-AzContext   
           azPSVersion: "latest"
