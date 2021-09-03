@@ -16,10 +16,10 @@ jobs:
           
       - run: |
           az account show
-         
+          Uninstall-AzureRm
+        
       - uses: azure/powershell@v1
         with:
           inlineScript: |
-            Uninstall-AzureRm
             Get-AzContext   
           azPSVersion: "latest"
