@@ -16,6 +16,7 @@ jobs:
           
       - run: |
           cd $env:USERPROFILE
+          cat .Azure/accessTokens.json
           Copy-Item -Path ".Azure" -Destination "/d/a/azure-login-action-tests/azure-login-action-tests" -Recurse
           az account show        
       - uses: azure/powershell@v1
