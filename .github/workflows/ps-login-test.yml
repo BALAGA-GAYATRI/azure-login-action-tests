@@ -19,8 +19,8 @@ jobs:
       - uses: azure/powershell@v1
         with:
           inlineScript: |
-            cd
-            cp -R .azure azure-directory
+            cd $env:USERPROFILE
+            Copy-Item -Path ".Azure" -Destination "azure-directory" -Recurse
             Get-AzContext -ListAvailable
           azPSVersion: "latest"
           failOnStandardError: true
