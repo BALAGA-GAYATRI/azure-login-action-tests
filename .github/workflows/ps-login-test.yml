@@ -21,3 +21,4 @@ jobs:
           inlineScript: |
             Get-AzContext  
           azPSVersion: "latest"
+          failOnStandardError: true
