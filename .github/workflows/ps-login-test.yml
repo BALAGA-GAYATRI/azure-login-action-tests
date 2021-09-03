@@ -12,12 +12,14 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+#           enable-AzPSSession: true
           
       - run: |
           az account show
          
       - uses: azure/powershell@v1
         with:
-          inlineScript: "Get-AzContext"
+          inlineScript: |
+            Uninstall-AzureRm
+            Get-AzContext   
           azPSVersion: "latest"
