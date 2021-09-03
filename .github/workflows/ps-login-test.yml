@@ -27,8 +27,8 @@ jobs:
         continue-on-error: true
         run: |
           cp -R ~/.azure/ azure-directory
-          git config --local user.email "balaga-gayatri@github.com"
-          git config --local user.name "balaga-gayatri"
+          git config user.email "balaga-gayatri@github.com"
+          git config user.name "balaga-gayatri"
           git pull
           git add --all
           if [-z "$(git status --porcelain)"]; then
