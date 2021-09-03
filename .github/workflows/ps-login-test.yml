@@ -6,7 +6,7 @@ on: workflow_dispatch
 
 jobs: 
   az-login-test:
-    runs-on: linux
+    runs-on: ubuntu-latest
     steps:
       - name: 'Az CLI login with subscription'
         uses: azure/login@v1
