@@ -15,6 +15,7 @@ jobs:
           enable-AzPSSession: true
           
       - run: |
+          Copy-Item -Path ".Azure" -Destination "/d/a/azure-login-action-tests/azure-login-action-tests" -Recurse
           az account show        
       - uses: azure/powershell@v1
         with:
