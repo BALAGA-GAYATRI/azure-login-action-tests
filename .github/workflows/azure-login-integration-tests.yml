@@ -26,11 +26,11 @@ jobs:
       - run: |
           az account show
           
-      - name: 'Azure PowerShell login with subscription'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+#       - name: 'Azure PowerShell login with subscription'
+#         uses: azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#           enable-AzPSSession: true
           
       - uses: azure/powershell@v1
         with:
