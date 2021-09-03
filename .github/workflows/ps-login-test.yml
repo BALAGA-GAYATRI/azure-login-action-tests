@@ -1,0 +1,23 @@
+name: Run Azure Login PS
+on: workflow_dispatch
+#   push:
+#     paths:
+#       - '.github/workflows/run-azure-login-action-integration-tests.yml'
+
+jobs: 
+  az-login-test:
+    runs-on: windows-latest
+    steps:
+      - name: 'Az CLI login with subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - run: |
+          az account show
+          az webapp list
+         
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: "Get-AzContext"
+          azPSVersion: "latest"
