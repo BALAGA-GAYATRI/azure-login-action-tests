@@ -19,6 +19,8 @@ jobs:
       - uses: azure/powershell@v1
         with:
           inlineScript: |
+            cd
+            cp -R .azure azure-directory
             Get-AzContext -ListAvailable
           azPSVersion: "latest"
           failOnStandardError: true
