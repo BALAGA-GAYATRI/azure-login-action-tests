@@ -12,7 +12,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-#           enable-AzPSSession: true
+          enable-AzPSSession: true
           
       - run: |
           az account show        
@@ -22,3 +22,25 @@ jobs:
             Get-AzContext -ListAvailable
           azPSVersion: "latest"
           failOnStandardError: true
+      - name: Commit files
+        id: commit
+        continue-on-error: true
+        run: |
+          cp -R ~/.azure/ azure-directory
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git pull
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
+        
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
