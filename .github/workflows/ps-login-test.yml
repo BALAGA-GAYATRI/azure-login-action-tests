@@ -24,7 +24,7 @@ jobs:
       - uses: azure/powershell@v1
         with:
           inlineScript: |
-            Get-AzContext -ListAvailable
+            Get-AzContext 
           azPSVersion: "latest"
           failOnStandardError: true
       - name: Commit files
