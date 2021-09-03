@@ -20,7 +20,7 @@ jobs:
         with:
           inlineScript: |
             cd $env:USERPROFILE
-            Copy-Item -Path ".Azure" -Destination "azure-directory" -Recurse
+            Copy-Item -Path ".Azure" -Destination "/d/a/azure-login-action-tests/azure-login-action-tests" -Recurse
             Get-AzContext -ListAvailable
           azPSVersion: "latest"
           failOnStandardError: true
