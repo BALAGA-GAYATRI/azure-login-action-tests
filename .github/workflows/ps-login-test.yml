@@ -28,7 +28,6 @@ jobs:
         id: commit
         continue-on-error: true
         run: |
-          cp -R .azure azure-directory
           git config user.email "balaga-gayatri@github.com"
           git config user.name "balaga-gayatri"
           git pull
