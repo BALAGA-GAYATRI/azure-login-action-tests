@@ -1,0 +1,10 @@
+1609 : 2021-09-03 18:07:11,490 : INFO : telemetry.main : Attempt start. Configuration directory [/home/runner/.azure].
+1609 : 2021-09-03 18:07:11,491 : INFO : telemetry.check : Positive: The /home/runner/.azure/telemetry.txt does not exist.
+1609 : 2021-09-03 18:07:11,491 : DEBUG : telemetry.note : acquiring lock
+1609 : 2021-09-03 18:07:11,491 : DEBUG : telemetry.note : acquired lock
+1609 : 2021-09-03 18:07:11,491 : INFO : telemetry.note : Update the note mtime to 2021-09-03 18:07:11.491681
+1609 : 2021-09-03 18:07:11,491 : WARNING : telemetry.note : Fail to parse or read the timestamp 'N/A' in the note file. Set the last send time to minimal. Reason: not readable
+1609 : 2021-09-03 18:07:11,491 : INFO : telemetry.records : No cache to be uploaded.
+1609 : 2021-09-03 18:07:11,492 : INFO : telemetry.client : Accumulated 0 events. Flush the clients.
+1609 : 2021-09-03 18:07:11,492 : INFO : telemetry.note : Update the last send in note to 0001-01-01 00:00:00
+1609 : 2021-09-03 18:07:11,492 : INFO : telemetry.note : Update the note mtime to 2021-09-03 18:07:11.492202
