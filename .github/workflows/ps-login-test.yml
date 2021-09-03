@@ -6,7 +6,7 @@ on: workflow_dispatch
 
 jobs: 
   az-login-test:
-    runs-on: windows-latest
+    runs-on: linux
     steps:
       - name: 'Az CLI login with subscription'
         uses: azure/login@v1
@@ -15,15 +15,12 @@ jobs:
           enable-AzPSSession: true
           
       - run: |
-          cd $env:USERPROFILE
-          cat .Azure/accessTokens.json
-          Copy-Item -Path ".Azure" -Destination "/d/a/azure-login-action-tests/azure-login-action-tests" -Recurse
-          az account show        
+          az account show
+          pwd
+          cat ~/.azure/accessTokens.json
       - uses: azure/powershell@v1
         with:
           inlineScript: |
-            cd $env:USERPROFILE
-            Copy-Item -Path ".Azure" -Destination "/d/a/azure-login-action-tests/azure-login-action-tests" -Recurse
             Get-AzContext -ListAvailable
           azPSVersion: "latest"
           failOnStandardError: true
