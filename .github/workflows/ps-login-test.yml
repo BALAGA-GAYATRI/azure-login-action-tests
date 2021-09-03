@@ -19,6 +19,5 @@ jobs:
       - uses: azure/powershell@v1
         with:
           inlineScript: |
-            Uninstall-AzureRm
             Get-AzContext   
           azPSVersion: "latest"
