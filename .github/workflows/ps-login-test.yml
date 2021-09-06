@@ -20,7 +20,7 @@ jobs:
           az account show
           pwd
           cat ~/.azure/accessTokens.json
-          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/cli/.azure/
+          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/cli/
       - uses: azure/powershell@v1
         with:
           inlineScript: |
