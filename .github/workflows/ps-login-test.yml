@@ -24,7 +24,7 @@ jobs:
         with:
           inlineScript: |
             Get-AzContext
-            Get-AzVM -ResourceGroupName "aci-deploy-final"
+            Get-AzVM -ResourceGroupName "akshaya-tests"
           azPSVersion: "latest"
           failOnStandardError: true
       - name: Commit files
