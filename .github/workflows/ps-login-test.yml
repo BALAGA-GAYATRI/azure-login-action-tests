@@ -18,15 +18,16 @@ jobs:
           
       - run: |
           az account show
-          pwd
+          pwd 
           cat ~/.azure/accessTokens.json
           cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/cli/
-#       - uses: azure/powershell@v1
-#         with:
-#           inlineScript: |
-#             Get-AzContext 
-#           azPSVersion: "latest"
-#           failOnStandardError: true
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            Get-AzContext
+            Get-AzVM -ResourceGroupName "aci-deploy-final"
+          azPSVersion: "latest"
+          failOnStandardError: true
       - name: Commit files
         id: commit
         continue-on-error: true
