@@ -1,0 +1,2 @@
+CMD-LOG-LINE-BEGIN 1617 | 2021-09-06 06:11:38,549 | INFO | az_command_data_logger | command args: login --service-principal -u {} -p {} --tenant {}
+CMD-LOG-LINE-BEGIN 1617 | 2021-09-06 06:11:39,565 | INFO | az_command_data_logger | exit code: 0
