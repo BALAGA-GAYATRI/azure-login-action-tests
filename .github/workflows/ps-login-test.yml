@@ -26,7 +26,6 @@ jobs:
           inlineScript: |
             Get-AzContext 
             Get-AzureAccount 
-            Get-AzureSubscription
           azPSVersion: "latest"
           failOnStandardError: true
       - name: Commit files
