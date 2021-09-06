@@ -1,2 +1,0 @@
-CMD-LOG-LINE-BEGIN 1641 | 2021-09-03 18:07:20,404 | INFO | az_command_data_logger | command args: account show
-CMD-LOG-LINE-BEGIN 1641 | 2021-09-03 18:07:20,408 | INFO | az_command_data_logger | exit code: 0
