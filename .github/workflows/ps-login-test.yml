@@ -20,12 +20,11 @@ jobs:
           az account show
           pwd
           cat ~/.azure/accessTokens.json
-          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/cli/
+          cp -R ~/.azure /home/runner/work/azure-login-action-tests/azure-login-action-tests/ps/
       - uses: azure/powershell@v1
         with:
           inlineScript: |
             Get-AzContext 
-            Get-AzureAccount 
           azPSVersion: "latest"
           failOnStandardError: true
       - name: Commit files
