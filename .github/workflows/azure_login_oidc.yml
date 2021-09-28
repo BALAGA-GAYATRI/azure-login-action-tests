@@ -1,12 +1,12 @@
 name: Run Azure Login for OIDC
 on: workflow_dispatch
 
-
+permissions:
+      id-token: write
+      contents: write
 jobs: 
   az-login-test:
     runs-on: self-hosted
-    permissions:
-            id-token: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
