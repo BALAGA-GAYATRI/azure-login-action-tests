@@ -19,10 +19,11 @@ jobs:
            
            
 
-      - name: 'Az CLI login with subscription'
+      - name: 'Az CLI login without subscription'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
+          allow-no-subscriptions: true
 #           enable-AzPSSession: true
           
       - run: |
