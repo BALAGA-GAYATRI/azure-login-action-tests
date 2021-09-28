@@ -13,7 +13,8 @@ jobs:
            python3 -m venv oidc-venv
            . /Users/balaga-gayatri/actions-runner/_work/azure-login-action-tests/azure-login-action-tests/oidc-venv/bin/activate
            python3 -m pip install --upgrade pip
-           pip install --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+           pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+           
            
 
       - name: 'Az CLI login with subscription'
