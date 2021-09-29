@@ -25,6 +25,7 @@ jobs:
 #           enable-AzPSSession: true
           
       - run: |
+          pwd
           . /Users/balaga-gayatri/actions-runner/_work/azure-login-action-tests/azure-login-action-tests/oidc-venv/bin/activate
           az account show
           az group list
