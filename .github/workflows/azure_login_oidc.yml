@@ -26,6 +26,7 @@ jobs:
           
       - run: |
           az account show
+          az group list
           pwd 
 #       - name: deactive and remove cli beta venv
 #         run: |
