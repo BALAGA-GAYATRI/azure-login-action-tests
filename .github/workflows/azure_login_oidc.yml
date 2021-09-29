@@ -21,13 +21,13 @@ jobs:
         uses: 'balaga-gayatri/login@oidc-support'
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
-          allow-no-subscriptions: true
+#           allow-no-subscriptions: true
 #           enable-AzPSSession: true
           
       - run: |
           az account show
           pwd 
-      - name: deactive and remove cli beta venv
-        run: |
-          deactivate
-          rm -rf oidc-venv
+#       - name: deactive and remove cli beta venv
+#         run: |
+#           deactivate
+#           rm -rf oidc-venv
