@@ -4,6 +4,10 @@ on: workflow_dispatch
 permissions:
       id-token: write
       contents: write
+env:
+  AZURE_WEBAPP_NAME: gayatri-webapp-py # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '~/pythonSample_thecatsaidno'         # set this to the path to your web app project, defaults to the repository root
+  PYTHON_VERSION: '3.7'                  # set this to the python version to use
 jobs: 
   az-login-test:
     runs-on: self-hosted
@@ -26,16 +30,24 @@ jobs:
            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            pip install -r pythonSample_thecatsaidno/requirements.txt
            
-#       - name: 'Az CLI login without subscription'
-#         uses: 'balaga-gayatri/login@oidc-support'
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
-# #           allow-no-subscriptions: true
-# #           enable-AzPSSession: true
+      - name: 'Az CLI login without subscription'
+        uses: 'balaga-gayatri/login@oidc-support'
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
+#           allow-no-subscriptions: true
+#           enable-AzPSSession: true
           
-#       - run: |
-#           pwd
-#           . ~/oidc-venv/bin/activate
-#           az account show
-#           az group list
-#           pwd 
+      - name: 'Run az commands'
+        run: |
+          pwd
+          . ~/oidc-venv/bin/activate
+          az account show
+          az group list
+          pwd 
+          
+      - name: 'Deploy using webapps-deploy'
+        uses: Azure/webapps-deploy@v2
+        with: 
+           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
