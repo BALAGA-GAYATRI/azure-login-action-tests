@@ -15,7 +15,7 @@ jobs:
            pwd 
            python3 -m venv oidc-venv
            ls
-           . /oidc-venv/bin/activate
+           . oidc-venv/bin/activate
            python3 -m pip install --upgrade pip
            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            
