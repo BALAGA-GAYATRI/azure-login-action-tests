@@ -28,7 +28,7 @@ jobs:
           
       - run: |
           pwd
-          . ~/oidc-venv/bin/activate
+          . oidc-venv/bin/activate
           az account show
           az group list
           pwd 
