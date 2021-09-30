@@ -26,16 +26,16 @@ jobs:
            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            pip install -r pythonSample_thecatsaidno/requirements.txt
            
-      - name: 'Az CLI login without subscription'
-        uses: 'balaga-gayatri/login@oidc-support'
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
-#           allow-no-subscriptions: true
-#           enable-AzPSSession: true
+#       - name: 'Az CLI login without subscription'
+#         uses: 'balaga-gayatri/login@oidc-support'
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
+# #           allow-no-subscriptions: true
+# #           enable-AzPSSession: true
           
-      - run: |
-          pwd
-          . ~/oidc-venv/bin/activate
-          az account show
-          az group list
-          pwd 
+#       - run: |
+#           pwd
+#           . ~/oidc-venv/bin/activate
+#           az account show
+#           az group list
+#           pwd 
