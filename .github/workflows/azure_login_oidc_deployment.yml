@@ -43,7 +43,9 @@ jobs:
           . oidc-venv/bin/activate
           az account show
           az group list
-          pwd 
+          pwd
+          cd
+          cat .zshrc
           
       - name: 'Deploy using webapps-deploy'
         uses: Azure/webapps-deploy@v2
