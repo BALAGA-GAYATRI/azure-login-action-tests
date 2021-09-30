@@ -1,2 +1,0 @@
-CMD-LOG-LINE-BEGIN 1632 | 2021-09-06 06:11:40,260 | INFO | az_command_data_logger | command args: account show
-CMD-LOG-LINE-BEGIN 1632 | 2021-09-06 06:11:40,266 | INFO | az_command_data_logger | exit code: 0

@@ -1,2 +1,0 @@
-CMD-LOG-LINE-BEGIN 1624 | 2021-09-06 06:11:39,886 | INFO | az_command_data_logger | command args: account set --subscription {}
-CMD-LOG-LINE-BEGIN 1624 | 2021-09-06 06:11:39,895 | INFO | az_command_data_logger | exit code: 0

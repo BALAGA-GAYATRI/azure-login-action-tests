@@ -1,2 +1,0 @@
-CMD-LOG-LINE-BEGIN 1608 | 2021-09-06 06:11:38,156 | INFO | az_command_data_logger | command args: cloud set -n {}
-CMD-LOG-LINE-BEGIN 1608 | 2021-09-06 06:11:38,164 | INFO | az_command_data_logger | exit code: 0
