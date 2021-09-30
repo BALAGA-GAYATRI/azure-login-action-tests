@@ -23,38 +23,38 @@ jobs:
       - run: |
             echo $PATH
             which az 
-#       - name: Installing CLI-beta for OIDC and apps dependencies 
-#         run: |
-#            pwd 
-#            python3 -m venv oidc-venv
-#            ls
-#            . oidc-venv/bin/activate
-#            python3 -m pip install --upgrade pip
-#            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
-#            pip install -r pythonSample_thecatsaidno/requirements.txt
+      - name: Installing CLI-beta for OIDC and apps dependencies 
+        run: |
+           pwd 
+           python3 -m venv oidc-venv
+           ls
+           . oidc-venv/bin/activate
+           python3 -m pip install --upgrade pip
+           pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+           pip install -r pythonSample_thecatsaidno/requirements.txt
            
-#       - name: 'Az CLI login without subscription'
-#         uses: 'balaga-gayatri/login@oidc-support'
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
-# #           allow-no-subscriptions: true
-# #           enable-AzPSSession: true
+      - name: 'Az CLI login without subscription'
+        uses: 'balaga-gayatri/login@oidc-support'
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
+#           allow-no-subscriptions: true
+#           enable-AzPSSession: true
           
-#       - name: 'Run az commands'
-#         run: |
-#           pwd
-#           which az
-#           . oidc-venv/bin/activate
-#           az account show
-#           az group list
-#           pwd
-#           cd
-#           cat .zshrc
+      - name: 'Run az commands'
+        run: |
+          pwd
+          which az
+          . oidc-venv/bin/activate
+          az account show
+          az group list
+          pwd
+          cd
+          cat .zshrc
           
           
-#       - name: 'Deploy using webapps-deploy'
-#         uses: Azure/webapps-deploy@v2
-#         with: 
-#            app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-#            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: 'Deploy using webapps-deploy'
+        uses: Azure/webapps-deploy@v2
+        with: 
+           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
