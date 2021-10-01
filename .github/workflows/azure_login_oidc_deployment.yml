@@ -56,10 +56,7 @@ jobs:
           which az
           az account show
           az group list
-          pwd
-          cd
-          cat .zshrc
-          
+          pwd          
           
       - name: 'Deploy using webapps-deploy'
         uses: Azure/webapps-deploy@v2
