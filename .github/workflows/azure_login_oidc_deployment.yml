@@ -39,8 +39,8 @@ jobs:
            
       - name: check path variables 
         run: |
-            echo $path
-            which az
+            echo $PATH
+            #which az
             az --version
            
       - name: 'Az CLI login without subscription'
