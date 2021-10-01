@@ -33,16 +33,13 @@ jobs:
            echo "***********activated environment**********" 
            python3 -m pip install --upgrade pip
            echo "***************started installing cli beta*******************" 
-           pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+           pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            echo "***************installed cli beta*******************"       
-           python3 -m pip install -r pythonSample_thecatsaidno/requirements.txt
+           python3 -m pip install -q -r pythonSample_thecatsaidno/requirements.txt
            
       - name: check path variables 
         run: |
             echo $path
-            which az
-            az --version
-            . /home/runner/work/azure-login-action-tests/azure-login-action-tests/oidc-venv/bin/activate
             which az
             az --version
            
@@ -67,9 +64,5 @@ jobs:
            app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       
-      - name: 'restore original .bashrc'
-        run: |
-            mv ~/.bashrc.bak ~/.bashrc
-            source ~/.bashrc
 # mkdir -p ${GITHUB_WORKSPACE}/cli-beta
 #   python3 -m pip install --target ${GITHUB_WORKSPACE}/cli-beta --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
