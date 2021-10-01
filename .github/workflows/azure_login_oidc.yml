@@ -19,7 +19,7 @@ jobs:
            python3 -m pip install --upgrade pip
            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            
-      - name: 'Az CLI login without subscription'
+      - name: 'Az CLI login with subscription'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
