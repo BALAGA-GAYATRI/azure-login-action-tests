@@ -26,12 +26,13 @@ jobs:
         run: |
            CWD="$(pwd)"
            echo $CWD
+           which az 
            python3 -m venv oidc-venv
-           . oidc-venv/bin/activate
            cp ~/.bashrc ~/.bashrc.bak
            echo "***********activating environment from bashrc**********"
            echo ". $CWD/oidc-venv/bin/activate" >> .bashrc
            source ~/.bashrc 
+           . oidc-venv/bin/activate
            python3 -m pip install --upgrade pip
            echo "***************started installing cli beta*******************" 
            pip install --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
