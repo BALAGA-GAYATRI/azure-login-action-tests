@@ -10,7 +10,7 @@ env:
   PYTHON_VERSION: '3.7'                  # set this to the python version to use
 jobs: 
   az-deployment-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Check out current repo 
         uses: actions/checkout@v2
