@@ -27,11 +27,11 @@ jobs:
            pwd 
            python3 -m pip install --upgrade pip
            mkdir -p ${GITHUB_WORKSPACE}/cli-beta
-           pip install --target ${GITHUB_WORKSPACE}/cli-beta --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+           pip3 install --target ${GITHUB_WORKSPACE}/cli-beta --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
            cp ~/.bashrc ~/.bashrc.bak
            echo "export PATH=${GITHUB_WORKSPACE}/cli-beta/bin:$PATH" >> .bashrc
            source ~/.bashrc
-           pip install -r pythonSample_thecatsaidno/requirements.txt
+           pip3 install -r pythonSample_thecatsaidno/requirements.txt
            
       - name: 'Az CLI login without subscription'
         uses: 'balaga-gayatri/login@oidc-support'
