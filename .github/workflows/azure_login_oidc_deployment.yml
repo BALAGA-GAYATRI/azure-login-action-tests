@@ -45,6 +45,9 @@ jobs:
             which az
             cat ~/.bashrc
             az --version
+            . /home/runner/work/azure-login-action-tests/azure-login-action-tests/oidc-venv/bin/activate
+            which az
+            az --version
            
       - name: 'Az CLI login without subscription'
         uses: 'balaga-gayatri/login@oidc-support'
