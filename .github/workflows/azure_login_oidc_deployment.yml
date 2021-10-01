@@ -27,6 +27,7 @@ jobs:
            CWD="$(pwd)"
            echo $CWD
            python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
            cp ~/.bashrc ~/.bashrc.bak
            echo "***********activating environment from bashrc**********"
            echo ". $CWD/oidc-venv/bin/activate" >> .bashrc
@@ -41,6 +42,7 @@ jobs:
         run: |
             echo $path
             which az
+            cat ~/.bashrc
             az --version
            
       - name: 'Az CLI login without subscription'
