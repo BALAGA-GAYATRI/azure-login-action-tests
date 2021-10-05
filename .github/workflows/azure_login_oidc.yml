@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Installing CLI-beta for OIDC
         run: |
+           CWD="$(pwd)"
+           echo $CWD
            python3 -m venv oidc-venv
            . oidc-venv/bin/activate
            echo "***********activated environment**********" 
