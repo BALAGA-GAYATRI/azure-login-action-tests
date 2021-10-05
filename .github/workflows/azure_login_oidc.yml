@@ -27,7 +27,7 @@ jobs:
         with:
           client_id: ${{ secrets.AZURE_CLIENTID }}
           tenant_id: ${{ secrets.AZURE_TENANTID }}
-          subscription_id: ${{ secret.AZURE_SUBSCRIPTIONID }}
+          subscription_id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
