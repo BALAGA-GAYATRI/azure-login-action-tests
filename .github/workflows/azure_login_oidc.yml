@@ -20,8 +20,8 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-#           allow-no-subscriptions: true
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
 #           enable-AzPSSession: true
 #          environment: azurestack
           
