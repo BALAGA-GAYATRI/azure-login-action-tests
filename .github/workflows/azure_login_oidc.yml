@@ -32,7 +32,7 @@ jobs:
           subscription_id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
 #           allow-no-subscriptions: true
-          enable-AzPSSession: true
+#           enable-AzPSSession: true
           
       - run: |
           pwd
@@ -40,15 +40,4 @@ jobs:
           az group list
           pwd 
     
-#       - name: deactive and remove cli beta venv
-#         run: |
-#           deactivate
-#           rm -rf oidc-venv
-          
-#  python3 -m venv oidc-venv
-# . oidc-venv/bin/activate
-# echo "***********activated environment**********" 
-# python3 -m pip install --upgrade pip
-# echo "***************started installing cli beta*******************" 
-# pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
-# echo "***************installed cli beta*******************"
+
