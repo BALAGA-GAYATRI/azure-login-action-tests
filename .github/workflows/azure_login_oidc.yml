@@ -18,7 +18,7 @@ jobs:
         uses: 'balaga-gayatri/login@oidc-support'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
-#          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
 #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
           allow-no-subscriptions: true
