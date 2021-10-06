@@ -33,10 +33,10 @@ jobs:
           az group list
           pwd 
     
-      - name: deactive and remove cli beta venv
-        run: |
-          deactivate
-          rm -rf oidc-venv
+#       - name: deactive and remove cli beta venv
+#         run: |
+#           deactivate
+#           rm -rf oidc-venv
           
 #  python3 -m venv oidc-venv
 # . oidc-venv/bin/activate
