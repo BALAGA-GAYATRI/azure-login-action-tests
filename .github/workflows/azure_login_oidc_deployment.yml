@@ -43,7 +43,7 @@ jobs:
             #which az
             az --version
            
-      - name: 'Az CLI login without subscription'
+      - name: 'Az CLI login with subscription'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
           client_id: ${{ secrets.AZURE_CLIENTID }}
