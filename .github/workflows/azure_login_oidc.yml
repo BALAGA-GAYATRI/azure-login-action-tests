@@ -12,10 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Installing CLI-beta for OIDC
         run: |
-           CWD="$(pwd)"  
-          
-           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
-           
+           CWD="$(pwd)"   
+           echo "/Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
       - name: 'Az CLI login with subscription'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
@@ -39,3 +37,5 @@ jobs:
 #            echo "***************started installing cli beta*******************" 
 #            pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
 #            echo "***************installed cli beta*******************" 
+#            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+           
