@@ -23,7 +23,7 @@ jobs:
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
           allow-no-subscriptions: true
 #           enable-AzPSSession: true
-          enviroment: azurestack
+          environment: azurestack
           
       - run: |
           pwd
