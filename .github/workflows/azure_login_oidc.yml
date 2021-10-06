@@ -6,7 +6,7 @@ permissions:
       contents: write
 jobs: 
   az-login-test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -14,6 +14,13 @@ jobs:
         run: |
            CWD="$(pwd)"
            echo $CWD  
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "***********activated environment**********" 
+           python3 -m pip install --upgrade pip
+           echo "***************started installing cli beta*******************" 
+           pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+           echo "***************installed cli beta*******************"
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            which az
            
