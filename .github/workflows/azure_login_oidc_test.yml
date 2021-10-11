@@ -22,7 +22,7 @@ jobs:
           creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
-#           environment: azurestack
+          environment: azureusgovernment
           
       - run: |
           pwd
