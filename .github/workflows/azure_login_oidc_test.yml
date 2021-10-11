@@ -16,10 +16,10 @@ jobs:
       - name: 'Az CLI login'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
-#           client-id: ${{ secrets.AZURE_CLIENTID }}
-#           tenant-id: ${{ secrets.AZURE_TENANTID }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
 #           environment: azurestack
