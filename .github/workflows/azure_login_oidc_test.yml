@@ -1,0 +1,33 @@
+name: Run Azure Login with OIDC
+on: workflow_dispatch
+
+permissions:
+      id-token: write
+      contents: write
+jobs: 
+  az-login-test:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Installing CLI-beta for OIDC
+        run: |
+           echo "/Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
+      - name: 'Az CLI login'
+        uses: 'balaga-gayatri/login@oidc-support'
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#           allow-no-subscriptions: true
+#           enable-AzPSSession: true
+#           environment: azurestack
+          
+      - run: |
+          pwd
+          az account show
+          az group list
+          pwd 
+    
+
