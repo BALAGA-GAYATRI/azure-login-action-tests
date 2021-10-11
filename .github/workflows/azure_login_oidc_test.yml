@@ -19,10 +19,10 @@ jobs:
 #           client-id: ${{ secrets.AZURE_CLIENTID }}
 #           tenant-id: ${{ secrets.AZURE_TENANTID }}
 #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-          creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CHINA_GOV_CREDENTIALS }}
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
-          environment: azureusgovernment
+          environment: azurechinacloud
           
       - run: |
           pwd
