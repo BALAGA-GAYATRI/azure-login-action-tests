@@ -14,15 +14,15 @@ jobs:
         run: |
            echo "/Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@oidc-support'
+        uses: 'azure/login@oidc-support'
         with:
-#           client-id: ${{ secrets.AZURE_CLIENTID }}
-#           tenant-id: ${{ secrets.AZURE_TENANTID }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS}} 
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS}} 
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
-          environment: azurechinacloud
+#           environment: azurechinacloud
           
       - run: |
           pwd
