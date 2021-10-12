@@ -16,7 +16,7 @@ jobs:
       - name: 'Az CLI login'
         uses: 'azure/login@oidc-support'
         with:
-          client-id: edacfd3e-c32d-4a81-981c-e3617a2e59eb #${{ secrets.AZURE_CLIENTID }}
+          client-id: edacfd3e-c32d-4a81-981c-e3617a2e59eb 
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS}} 
@@ -30,4 +30,4 @@ jobs:
           az group list
           pwd 
     
-
+#${{ secrets.AZURE_CLIENTID }}
