@@ -16,7 +16,7 @@ jobs:
       - name: 'Az CLI login'
         uses: 'balaga-gayatri/login@oidc-support'
         with:
-          client-id: edacfd3e-c32d-4a81-981c-e3617a2e59eb 
+          client-id: eb27ed4a-c2a6-49e3-938e-5d159f36f1e5
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS}} 
