@@ -32,6 +32,8 @@ jobs:
           subject: Test mail please ignore
           to: balaga-gayatri@github.com
           from: Gayatri # <user@example.com>
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
           
       - run: |
           pwd
