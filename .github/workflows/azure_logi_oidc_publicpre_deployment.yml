@@ -20,8 +20,6 @@ jobs:
           repository: Azure-Samples/pythonSample_thecatsaidno
           ref: master
           path: 'pythonSample_thecatsaidno'
-      - run: |
-            echo $PATH
       - name: Installing CLI-beta for OIDC and apps dependencies 
         run: |
            CWD="$(pwd)"
@@ -35,11 +33,11 @@ jobs:
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            python3 -m pip install -q -r pythonSample_thecatsaidno/requirements.txt
            
-      - name: check path variables 
-        run: |
-            echo $PATH
-            #which az
-            az --version
+#       - name: check path variables 
+#         run: |
+#             echo $PATH
+#             #which az
+#             az --version
            
       - name: 'Az CLI login with subscription'
         uses: 'balaga-gayatri/login@oidc-support'
