@@ -1,0 +1,69 @@
+name: Run Azure deployment with OIDC login with public preview
+on: workflow_dispatch
+
+permissions:
+      id-token: write
+      contents: write
+env:
+  AZURE_WEBAPP_NAME: gayatri-webapp-py # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: 'pythonSample_thecatsaidno'         # set this to the path to your web app project, defaults to the repository root
+  PYTHON_VERSION: '3.7'                  # set this to the python version to use
+jobs: 
+  az-deployment-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current repo 
+        uses: actions/checkout@v2
+      - name: Check out app's repo
+        uses: actions/checkout@v2
+        with:
+          repository: Azure-Samples/pythonSample_thecatsaidno
+          ref: master
+          path: 'pythonSample_thecatsaidno'
+      - run: |
+            echo $PATH
+      - name: Installing CLI-beta for OIDC and apps dependencies 
+        run: |
+           CWD="$(pwd)"
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "***********activated environment**********" 
+           python3 -m pip install --upgrade pip
+           echo "***************started installing cli beta*******************" 
+           pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+           echo "***************installed cli beta*******************"    
+           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+           python3 -m pip install -q -r pythonSample_thecatsaidno/requirements.txt
+           
+      - name: check path variables 
+        run: |
+            echo $PATH
+            #which az
+            az --version
+           
+      - name: 'Az CLI login with subscription'
+        uses: 'balaga-gayatri/login@oidc-support'
+        with:
+          client_id: ${{ secrets.AZURE_CLIENTID }}
+          tenant_id: ${{ secrets.AZURE_TENANTID }}
+          subscription_id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+#           creds: ${{ secrets.AZURE_CREDENTIALS_OIDC }}
+#           allow-no-subscriptions: true
+#           enable-AzPSSession: true
+          
+      - name: 'Run az commands'
+        run: |
+          pwd
+          which az
+          az account show
+          az group list
+          pwd          
+          
+      - name: 'Deploy using webapps-deploy'
+        uses: Azure/webapps-deploy@v2
+        with: 
+           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      
+# mkdir -p ${GITHUB_WORKSPACE}/cli-beta
+#   python3 -m pip install --target ${GITHUB_WORKSPACE}/cli-beta --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
