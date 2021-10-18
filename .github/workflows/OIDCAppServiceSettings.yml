@@ -1,0 +1,45 @@
+# ASP.NET Core-Appsettings.yml
+on: [workflow_dispatch]
+
+permissions:
+      id-token: write
+      contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # checkout the repo
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@master
+           
+    - name: Installing CLI-beta for OIDC
+      run: |
+           CWD="$(pwd)"  
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "activated environment" 
+           python3 -m pip install -q --upgrade pip
+           echo "started installing cli beta" 
+           pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+           echo "***************installed cli beta*******************" 
+           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+           
+    - name: 'Az CLI login'
+      uses: 'azure/login@oidc-support'
+      with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+        
+    - uses: azure/appservice-settings@v1
+      with:
+        app-name: 'appservice-settings-webApp'
+        #slot-name: 'staging'  # Optional and needed only if the settings have to be configured on the specific deployment slot
+        #app-settings-json: '${{ secrets.APP_SETTINGS }}' 
+        #connection-strings-json: '${{ secrets.CONNECTION_STRINGS }}'
+        general-settings-json: '{"alwaysOn": "false", "webSocketsEnabled": "true"}' #'General configuration settings as Key Value pairs'
+      id: settings
+    - run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}"
+    - run: |
+        az logout
