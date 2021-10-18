@@ -42,7 +42,7 @@ jobs:
             az --version
            
       - name: 'Az CLI login with subscription'
-        uses: 'balaga-gayatri/login@oidc-support'
+        uses: 'azure/login@oidc-support'
         with:
           client_id: ${{ secrets.AZURE_CLIENTID }}
           tenant_id: ${{ secrets.AZURE_TENANTID }}
