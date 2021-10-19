@@ -42,7 +42,7 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: TestResourceGroup
-            dns-name-label: "ajaykalecontainer"
+            dns-name-label: "containerinstancedns"
             image: nginx
             #registry-username: ${{ secrets.REGISTRY_USERNAME }}
             #registry-password: ${{ secrets.REGISTRY_PASSWORD }}
