@@ -1,0 +1,46 @@
+name: Azure-build-vm-image
+
+on: workflow_dispatch
+
+jobs:
+  BUILD-CUSTOM-IMAGE:
+    runs-on: ubuntu-latest    
+    steps:
+    - name: CHECKOUT
+      uses: actions/checkout@v2
+  
+  #CLI dependency test - START
+  
+    - name: Installing CLI-beta for OIDC 
+      run: |
+         CWD="$(pwd)"  
+         python3 -m venv oidc-venv
+         . oidc-venv/bin/activate
+         echo "activated environment" 
+         python3 -m pip install -q --upgrade pip
+         echo "started installing cli beta" 
+         pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
+         echo "***************installed cli beta*******************" 
+         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+  
+  #CLI dependency test - END
+
+    - name: AZURE LOGIN 
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTAILS}}
+
+    #- name: BUILD WEBAPP
+     # run: sudo ${{ GITHUB.WORKSPACE }}/webApp/buildscript.sh # Runs necessary build scripts and copies built artifacts to  ${{ GITHUB.WORKSPACE }}/workflow-artifacts
+      
+
+    - name: BUILD-CUSTOM-VM-IMAGE      
+      uses: azure/build-vm-image@v0
+      with:        
+        resource-group-name: 'AjayKale_RG'
+        managed-identity: 'AzureManagedIdentity-AK'
+        location: 'eastus2'
+        source-os-type: 'windows'        
+        source-image: MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest        
+        customizer-script: |
+          & 'c:\workflow-artifacts\webApp\webconfig.ps1'
