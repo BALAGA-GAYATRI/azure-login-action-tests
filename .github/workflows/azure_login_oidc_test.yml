@@ -14,9 +14,9 @@ jobs:
       - name: Installing CLI-beta for OIDC
         shell: pwsh
         run: |
-           $CWD = pwd
-           echo $CWD
-           python3 -m venv oidc-venv
+          $CWD = Convert-Path .
+          echo $CWD
+          python3 -m venv oidc-venv
          
            
       - name: 'Az CLI login'
