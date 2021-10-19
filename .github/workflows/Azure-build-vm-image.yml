@@ -2,6 +2,10 @@ name: Azure-build-vm-image
 
 on: workflow_dispatch
 
+permissions:
+      id-token: write
+      contents: write
+
 jobs:
   BUILD-CUSTOM-IMAGE:
     runs-on: ubuntu-latest    
@@ -25,10 +29,12 @@ jobs:
   
   #CLI dependency test - END
 
-    - name: AZURE LOGIN 
-      uses: azure/login@v1
+    - name: 'Az CLI login'
+      uses: 'azure/login@oidc-support'
       with:
-        creds: ${{secrets.AZURE_CREDENTAILS}}
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 
     #- name: BUILD WEBAPP
      # run: sudo ${{ GITHUB.WORKSPACE }}/webApp/buildscript.sh # Runs necessary build scripts and copies built artifacts to  ${{ GITHUB.WORKSPACE }}/workflow-artifacts
