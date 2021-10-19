@@ -42,19 +42,15 @@ jobs:
 
       - name: testing files-1
         run: |
-            pwd
-            ls
-            which az
-            echo $path
+          which az
+          echo $env:path  
       - name: Check out repository
         uses: actions/checkout@v2
   
       - name: testing files-1
         run: |
-            pwd
-            ls
             which az
-            echo $path    
+            echo $env:path    
       - run: |
           az account show
           az group list
