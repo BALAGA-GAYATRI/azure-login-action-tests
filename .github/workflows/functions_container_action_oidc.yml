@@ -1,0 +1,61 @@
+name: Functions_Linux_Container_Workflow
+
+on:
+  [workflow_dispatch]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@master
+      with:
+        repository: AmrutaKawade/ContainerFunctionApp
+#         token: ${{ secrets.GITSSHKEY }}
+        ref: master
+        
+    - name: Installing CLI-beta for OIDC
+      run: |
+         CWD="$(pwd)"  
+         python3 -m venv oidc-venv
+         . oidc-venv/bin/activate
+         echo "activated environment" 
+         python3 -m pip install -q --upgrade pip
+         echo "started installing cli beta" 
+         pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+         echo "***************installed cli beta*******************" 
+         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+         
+   - name: 'Az CLI login'
+     uses: 'azure/login@oidc-support'
+     with:
+        client-id: ${{ secrets.AZURE_CLIENTID }}
+        tenant-id: ${{ secrets.AZURE_TENANTID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+        
+    - name: 'Docker Login'
+      uses: azure/docker-login@v1
+      with:
+        login-server: l2testscontainerregistry.azurecr.io
+        username: ${{ secrets.L2TEST_ACR_USERNAME }}
+        password: ${{ secrets.L2TEST_ACR_PASSWORD }}
+
+    - name: 'Compose Customized Docker Image'
+      shell: bash
+      run: |
+        # If your function app project is not located in your repository's root
+        # Please change the path to your directory for docker build
+        docker build . -t l2testscontainerregistry.azurecr.io/containerfunapp/azurefunctionsimage:latest
+        docker push l2testscontainerregistry.azurecr.io/containerfunapp/azurefunctionsimage:latest
+        
+    - name: 'Run Azure Functions Container Action'
+      uses: Azure/functions-container-action@v1.1.0
+      id: fa
+      with:
+        app-name: containerfunapp
+        image: containerfunapp/azurefunctionsimage:latest
+
+    - name: Azure logout
+      run: |
+        az logout
