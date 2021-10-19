@@ -43,7 +43,7 @@ jobs:
     - name: BUILD-CUSTOM-VM-IMAGE      
       uses: azure/build-vm-image@v0
       with:        
-        resource-group-name: 'AjayKale_RG'
+        resource-group-name: 'TestResourceGroup'
         managed-identity: 'AzureManagedIdentity-AK'
         location: 'eastus2'
         source-os-type: 'windows'        
