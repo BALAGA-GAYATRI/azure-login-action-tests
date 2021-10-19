@@ -41,7 +41,7 @@ jobs:
         - name: 'Deploy to Azure Container Instances'
           uses: 'azure/aci-deploy@v1'
           with:
-            resource-group: AjayKale_RG
+            resource-group: TestResourceGroup
             dns-name-label: "ajaykalecontainer"
             image: nginx
             #registry-username: ${{ secrets.REGISTRY_USERNAME }}
