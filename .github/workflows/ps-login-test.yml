@@ -11,7 +11,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: 'Az CLI login with subscription'
-        uses: azure/login@v1
+        #uses: azure/login@v1
+      - uses: Azure/login@oidc-support
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 #           enable-AzPSSession: true
