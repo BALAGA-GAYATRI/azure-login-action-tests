@@ -27,9 +27,12 @@ jobs:
            echo "started installing cli beta" 
            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
            echo "***************installed cli beta*******************" 
-           echo $PATH
-           echo "$CWD\oidc-venv\Scripts" >> $GITHUB_PATH
-           echo $PATH
+           echo "echo path"
+           echo "$env:$PATH"
+           echo "$env:$GITHUB_PATH"
+           echo "$CWD\oidc-venv\Scripts" >> $$env:GITHUB_PATH
+           echo "$env:GITHUB_PATH"
+           echo $env:PATH
       - name: 'Az CLI login'
         uses: 'azure/login@oidc-support'
         with:
