@@ -23,9 +23,9 @@ jobs:
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            #echo "/Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@oidc-support'
+        uses: 'azure/login@oidc-support'
         with:
-          client-id: eb27ed4a-c2a6-49e3-938e-5d159f36f1e5
+          client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS}} 
