@@ -10,6 +10,20 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+        
+      - name: Installing CLI-beta for OIDC 
+        run: |
+         CWD="$(pwd)"  
+         python3 -m venv oidc-venv
+         . oidc-venv/bin/activate
+         echo "activated environment" 
+         python3 -m pip install -q --upgrade pip
+         echo "started installing cli beta" 
+         pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
+         echo "***************installed cli beta*******************" 
+         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+
+        
       - name: 'Az CLI login with subscription'
         #uses: azure/login@v1
         uses: Azure/login@oidc-support
@@ -25,7 +39,8 @@ jobs:
         with:
           inlineScript: |
             Get-AzContext
-            Get-AzVM -ResourceGroupName "akshaya-tests"
+            #Get-AzVM -ResourceGroupName "akshaya-tests"
+            Get-AzResourceGroup
           azPSVersion: "latest"
           failOnStandardError: true
 #       - name: Commit files
