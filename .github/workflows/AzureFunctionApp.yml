@@ -3,6 +3,10 @@ name: Deploy to AzureFunctionApp
 on:
   [workflow_dispatch]
 
+permissions:
+      id-token: write
+      contents: write
+
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions
 #
@@ -50,12 +54,19 @@ jobs:
         dotnet build --configuration Release --output ./output
         popd
 
+    - name: 'Az CLI login'
+      uses: 'azure/login@oidc-support'
+      with:
+            client-id: ${{ secrets.AZURE_CLIENTID }}
+            tenant-id: ${{ secrets.AZURE_TENANTID }}
+            subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}     
+
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+        #publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
