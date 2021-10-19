@@ -1,0 +1,37 @@
+
+name: azure-get-keyvault-secrets.yml
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the repo
+    - uses: actions/checkout@master
+    
+    #CLI Dependency Testing - START
+    
+    - name: Installing CLI-beta for OIDC 
+      run: |
+         CWD="$(pwd)"  
+         python3 -m venv oidc-venv
+         . oidc-venv/bin/activate
+         echo "activated environment" 
+         python3 -m pip install -q --upgrade pip
+         echo "started installing cli beta" 
+         pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
+         echo "***************installed cli beta*******************" 
+         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+
+    #CLI Dependency Testing - END
+    
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTAILS }} 
+    - uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: "CLI-KeyVault-Testing"
+        secrets: 'mySecret'  # comma separated list of secret keys that need to be fetched from the Key Vault 
+      id: myGetSecretAction
+        
