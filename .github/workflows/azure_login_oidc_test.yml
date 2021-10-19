@@ -33,7 +33,7 @@ jobs:
           echo $PATH
           cd /home/runner/work
           ls
-          
+               
       - name: 'Az CLI login'
         uses: 'azure/login@oidc-support'
         with:
@@ -41,14 +41,10 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 
-      - name: testing files-2
-        run: |
-          which az
-          ls
       - name: Check out repository
         uses: actions/checkout@v2
   
-      - name: testing files-3
+      - name: testing files-2
         run: |
             which az
             ls
