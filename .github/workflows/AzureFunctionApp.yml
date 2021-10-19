@@ -29,6 +29,7 @@ jobs:
       #CLI dependency testing START
     - name: Installing CLI-beta for OIDC 
       run: |
+         cd /home/runner/work
          CWD="$(pwd)"  
          python3 -m venv oidc-venv
          . oidc-venv/bin/activate
