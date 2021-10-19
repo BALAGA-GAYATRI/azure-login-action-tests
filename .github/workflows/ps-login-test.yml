@@ -34,7 +34,7 @@ jobs:
       - run: |
           az account show
           pwd 
-          cat ~/.azure/accessTokens.json
+          #cat ~/.azure/accessTokens.json
       - uses: azure/powershell@v1
         with:
           inlineScript: |
