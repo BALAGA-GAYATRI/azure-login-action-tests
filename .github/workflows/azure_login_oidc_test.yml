@@ -15,7 +15,7 @@ jobs:
         run: |
            set "CWD=%cd%"  
            python3 -m venv oidc-venv
-           .\oidc-venv\Scripts\Activate.ps1
+           .\oidc-venv\Scripts\activate
            echo "activated environment" 
            python3 -m pip install -q --upgrade pip
            echo "started installing cli beta" 
