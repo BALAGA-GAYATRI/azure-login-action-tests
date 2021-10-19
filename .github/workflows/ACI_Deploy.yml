@@ -1,6 +1,10 @@
 
 on: [workflow_dispatch]
-name: ACI_Deploy_Workflow
+name: ACI_Deploy
+
+permissions:
+      id-token: write
+      contents: write
 
 jobs:
     build-and-deploy:
@@ -10,6 +14,8 @@ jobs:
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master
           
+      #CLI Dependency Testing - START
+
         - name: Installing CLI-beta for OIDC
           run: |
                CWD="$(pwd)"  
@@ -18,16 +24,19 @@ jobs:
                echo "activated environment" 
                python3 -m pip install -q --upgrade pip
                echo "started installing cli beta" 
-               pip install -q --extra-index-url https://azurecliedge.blob.core.windows.net/federated-token/simple/ azure-cli
+               pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
                echo "***************installed cli beta*******************" 
-               echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH	
-           
+               echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+               
+       #CLI Dependency Testing - END
+
           
-        - name: 'Login via Azure CLI'
-          uses: azure/login@v1
+        - name: 'Az CLI login'
+          uses: 'azure/login@oidc-support'
           with:
-            creds: ${{ secrets.AZURE_CREDENTAILS }}
-        
+                  client-id: ${{ secrets.AZURE_CLIENTID }}
+                  tenant-id: ${{ secrets.AZURE_TENANTID }}
+                  subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}        
 
         - name: 'Deploy to Azure Container Instances'
           uses: 'azure/aci-deploy@v1'
