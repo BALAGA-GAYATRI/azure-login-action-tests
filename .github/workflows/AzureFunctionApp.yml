@@ -22,10 +22,9 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
     - name: 'Checkout GitHub Action'
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       
       #CLI dependency testing START
     - name: Installing CLI-beta for OIDC 
