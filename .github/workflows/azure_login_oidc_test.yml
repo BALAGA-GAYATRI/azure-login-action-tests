@@ -43,14 +43,15 @@ jobs:
       - name: testing files-1
         run: |
           which az
-          echo $env:path  
+          ls
       - name: Check out repository
         uses: actions/checkout@v2
   
       - name: testing files-1
         run: |
             which az
-            echo $env:path    
+            ls
+              
       - run: |
           az account show
           az group list
