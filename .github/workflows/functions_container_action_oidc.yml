@@ -27,9 +27,9 @@ jobs:
          echo "***************installed cli beta*******************" 
          echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
          
-   - name: 'Az CLI login'
-     uses: 'azure/login@oidc-support'
-     with:
+    - name: 'Az CLI login'
+      uses: 'azure/login@oidc-support'
+      with:
         client-id: ${{ secrets.AZURE_CLIENTID }}
         tenant-id: ${{ secrets.AZURE_TENANTID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
