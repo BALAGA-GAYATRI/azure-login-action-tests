@@ -23,7 +23,6 @@ jobs:
            echo "***************installed cli beta*******************" 
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            ls
-
       - name: Check out repository
         uses: actions/checkout@v2
   
