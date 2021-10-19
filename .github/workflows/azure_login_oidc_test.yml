@@ -12,8 +12,9 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Installing CLI-beta for OIDC
+        shell: pwsh
         run: |
-           set "CWD=%cd%"  
+           $CWD = pwd
            echo $CWD
            python3 -m venv oidc-venv
            . .\oidc-venv\Scripts\Activate.ps1
