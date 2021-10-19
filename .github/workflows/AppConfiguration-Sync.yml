@@ -1,0 +1,44 @@
+name: AppConfiguration-Sync
+
+on: workflow_dispatch
+
+permissions:
+      id-token: write
+      contents: write
+
+jobs:
+  syncconfig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      
+        #CLI dependency test - START
+  
+      - name: Installing CLI-beta for OIDC 
+        run: |
+         CWD="$(pwd)"  
+         python3 -m venv oidc-venv
+         . oidc-venv/bin/activate
+         echo "activated environment" 
+         python3 -m pip install -q --upgrade pip
+         echo "started installing cli beta" 
+         pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
+         echo "***************installed cli beta*******************" 
+         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+  
+  #CLI dependency test - END
+      
+      - name: 'Az CLI login'
+        uses: 'azure/login@oidc-support'
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+      
+      - uses: azure/appconfiguration-sync@v1
+        with:
+          configurationFile: 'appsettings.json'
+          format: 'json'
+          # Replace <ConnectionString> with the name of the secret in your repository
+          connectionString: ${{ secrets.APPSERVICE_CONNECTION_STRING }}
+          separator: ':'
