@@ -23,7 +23,7 @@ jobs:
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            #echo "/Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
       - name: 'Az CLI login'
-        uses: 'azure/login@oidc-support'
+        uses: 'balaga-gayatri/login@oidc-support'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
