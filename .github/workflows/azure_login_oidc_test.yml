@@ -8,12 +8,13 @@ permissions:
       contents: write
 jobs: 
   az-login-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
     steps:
       - name: Installing CLI-beta for OIDC
         run: |
-               cd /home/runner/work
+               #cd /home/runner/work
                CWD="$(pwd)"  
+               echo CWD
                python3 -m venv oidc-venv
                . oidc-venv/bin/activate
                echo "activated environment" 
