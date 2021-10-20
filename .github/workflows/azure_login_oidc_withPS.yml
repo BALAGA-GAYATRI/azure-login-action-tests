@@ -45,7 +45,8 @@ jobs:
 
       - name: 'Create a RG with powershell action'
         uses: azure/powershell@v1
-        with: |
+        with: 
+           inlineScript: |
              Get-AzResourceGroup
              New-AzResourceGroup -Name RGtestOIDC -Location "South Central US" 
              
