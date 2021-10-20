@@ -8,11 +8,11 @@ permissions:
       contents: write
 jobs: 
   az-login-test:
-    runs-on: self-hosted 
+    runs-on: ubuntu-latest
     steps:
       - name: Installing CLI-beta for OIDC
         run: |
-               #cd /home/runner/work
+               cd /home/runner/work
                CWD="$(pwd)"  
                echo CWD
                python3 -m venv oidc-venv
@@ -35,7 +35,7 @@ jobs:
           ls
           
       - name: 'Az CLI login'
-        uses: 'azure/login@oidc-support'
+        uses: 'balaga-gayatri/login@oidc-support'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
