@@ -42,10 +42,13 @@ jobs:
 #           allow-no-subscriptions: true
           enable-AzPSSession: true
 #           environment: azurestack
-        
+          
       - name: 'Run az commands'
+        shell: pwsh
         run: |
-          az account show
-          az group list
-          pwd 
-    
+           Get-AzResourceGroup
+           
+         
+#  az account show
+#           az group list
+#           pwd     
