@@ -48,7 +48,7 @@ jobs:
         with:
            inlineScript: |
              Get-AzResourceGroup
-             New-AzResourceGroup -Name RGtestOIDC -Location "South Central US" 
+             New-AzResourceGroup -Name RGtestOIDCfinal -Location "South Central US" 
            azPSVersion: "latest"
              
 #       - name: 'Run az commands'
