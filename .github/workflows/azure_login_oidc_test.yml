@@ -21,8 +21,6 @@ jobs:
         run: |
           which az
           echo $PATH
-          cd /home/runner/work
-          ls
           
       - name: 'Az CLI login'
         uses: 'balaga-gayatri/login@oidc-support'
