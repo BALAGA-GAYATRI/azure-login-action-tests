@@ -20,7 +20,7 @@ jobs:
            echo "activated environment" 
            python3 -m pip install -q --upgrade pip
            echo "started installing cli beta"
-           pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
+           pip install --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ --upgrade azure-cli
            echo "***************installed cli beta*******************" 
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            
