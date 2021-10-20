@@ -42,7 +42,13 @@ jobs:
 #           allow-no-subscriptions: true
           enable-AzPSSession: true
 #           environment: azurestack
-          
+
+      - name: 'Create a RG with powershell action'
+        uses: azure/powershell@v1
+        with: |
+             Get-AzResourceGroup
+             New-AzResourceGroup -Name RGtestOIDC -Location "South Central US" 
+             
       - name: 'Run az commands'
         shell: pwsh
         run: |
