@@ -8,25 +8,35 @@ permissions:
       contents: write
 jobs: 
   az-login-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: '3.x'
-           
-      - run: |
-            cd ../..
-            $CWD = Convert-Path .
-            echo $CWD
-            python --version
-            python -m venv oidc-venv
-            . .\oidc-venv\Scripts\Activate.ps1
-            python -m pip install -q --upgrade pip
-            echo "started installing cli beta" 
-            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
-            echo "***************installed cli beta*******************" 
-            echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
-            
+      # windows CLI installation     
+#       - run: |
+#             cd ../..
+#             $CWD = Convert-Path .
+#             echo $CWD
+#             python --version
+#             python -m venv oidc-venv
+#             . .\oidc-venv\Scripts\Activate.ps1
+#             python -m pip install -q --upgrade pip
+#             echo "started installing cli beta" 
+#             pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+#             echo "***************installed cli beta*******************" 
+#             echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
+      # ubuntu/macos installation
+      - name: Installing CLI-beta for OIDC and apps dependencies 
+        run: |
+           cd ../..
+           CWD="$(pwd)"
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "***********activated environment**********" 
+           python3 -m pip install --upgrade pip
+           echo "***************started installing cli beta*******************" 
+           pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+           echo "***************installed cli beta*******************"    
+           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH   
+
       - name: Installing preview Az.accounts for powershell
         shell: pwsh
         run: |
@@ -44,12 +54,13 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'azure/login@oidc-support-ps'
+        uses: 'azure/login@oidc-support'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}     
-
+          enable-AzPSSession: true
+          
       - name: Check out repository
         uses: actions/checkout@v2
   
