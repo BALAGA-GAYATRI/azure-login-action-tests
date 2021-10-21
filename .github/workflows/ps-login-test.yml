@@ -11,18 +11,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         
-      - name: Installing CLI-beta for OIDC
-        run: |
-           cd /home/runner/work
-           CWD="$(pwd)"  
-           python3 -m venv oidc-venv
-           . oidc-venv/bin/activate
-           echo "activated environment" 
-           python3 -m pip install -q --upgrade pip
-           echo "started installing cli beta"
-           pip install --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ --upgrade azure-cli
-           echo "***************installed cli beta*******************" 
-           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+#       - name: Installing CLI-beta for OIDC
+#         run: |
+#            cd /home/runner/work
+#            CWD="$(pwd)"  
+#            python3 -m venv oidc-venv
+#            . oidc-venv/bin/activate
+#            echo "activated environment" 
+#            python3 -m pip install -q --upgrade pip
+#            echo "started installing cli beta"
+#            pip install --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ --upgrade azure-cli
+#            echo "***************installed cli beta*******************" 
+#            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            
 #       - name: Installing preview Az.accounts for powershell
 #         shell: pwsh
@@ -33,20 +33,20 @@ jobs:
 #           Install-Module Az.Accounts -Repository LocalPSRepo
           
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@oidc-support-ps'
+        uses: azure/login@v1 #'balaga-gayatri/login@oidc-support-ps'
         with:
-          client-id: ${{ secrets.AZURE_CLIENTID }}
-          tenant-id: ${{ secrets.AZURE_TENANTID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-#           creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
+#           client-id: ${{ secrets.AZURE_CLIENTID }}
+#           tenant-id: ${{ secrets.AZURE_TENANTID }}
+#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+          creds: ${{ secrets.AZURE_US_GOV_CREDENTIALS }}
 #           allow-no-subscriptions: true
 #           enable-AzPSSession: true
           environment: azureusgovernment
 
-#       - name: 'Create a RG with powershell action'
-#         uses: azure/powershell@v1
-#         with:
-#            inlineScript: |
-#              Get-AzResourceGroup
-#              New-AzResourceGroup -Name RGtestOIDCfinal -Location "South Central US" 
-#            azPSVersion: "latest"
+      - name: 'Create a RG with powershell action'
+        uses: azure/powershell@v1
+        with:
+           inlineScript: |
+             Get-AzResourceGroup
+             New-AzResourceGroup -Name RGtestOIDCfinal -Location "South Central US" 
+           azPSVersion: "latest"
