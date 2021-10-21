@@ -36,7 +36,7 @@ jobs:
            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
            echo "***************installed cli beta*******************"    
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH   
-
+      # common 
       - name: Installing preview Az.accounts for powershell
         shell: pwsh
         run: |
@@ -60,7 +60,9 @@ jobs:
 #           tenant-id: ${{ secrets.AZURE_TENANTID }}
 #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}     
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          #allow-no-subscriptions: true
           enable-AzPSSession: true
+          #environment: azurestack
           
       - name: Check out repository
         uses: actions/checkout@v2
@@ -75,44 +77,3 @@ jobs:
           az group list
           pwd 
     
-#${{ secrets.AZURE_CLIENTID }}
-#   . .\oidc-venv\Scripts\Activate.ps1
-#            echo "activated environment" 
-#            python3 -m pip install -q --upgrade pip
-#            echo "started installing cli beta" 
-#            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
-#            echo "***************installed cli beta*******************"         
-#            echo "$CWD\oidc-venv\bin" >> $GITHUB_PATH
-
-#  - uses: actions/setup-python@v2
-#         with:
-#            python-version: '3.x'
-           
-#       - run: |
-#            $CWD = Convert-Path .
-#            echo $CWD
-#            python --version
-#            python -m venv oidc-venv
-#            . .\oidc-venv\Scripts\Activate.ps1
-#            python -m pip install -q --upgrade pip
-#            echo "started installing cli beta" 
-#            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
-#            echo "***************installed cli beta*******************" 
-#            echo "echo path"
-#            echo "$env:Path"
-#            echo "$env:GITHUB_PATH"
-#            echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
-#            echo "$env:GITHUB_PATH"
-#            echo $env:PATH
-
-#   cd /home/runner/work
-#                CWD="$(pwd)"  
-#                echo CWD
-#                python3 -m venv oidc-venv
-#                . oidc-venv/bin/activate
-#                echo "activated environment" 
-#                python3 -m pip install -q --upgrade pip
-#                echo "started installing cli beta" 
-#                pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli 
-#                echo "***************installed cli beta*******************" 
-#                echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
