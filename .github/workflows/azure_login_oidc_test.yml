@@ -8,11 +8,25 @@ permissions:
       contents: write
 jobs: 
   az-login-test:
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
-      - name: Installing CLI-beta for OIDC
-        run: |
-             echo "Users/balaga-gayatri/oidc-venv/bin" >> $GITHUB_PATH
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+           
+      - run: |
+            pwd
+            cd ../..
+            $CWD = Convert-Path .
+            echo $CWD
+            python --version
+            python -m venv oidc-venv
+            . .\oidc-venv\Scripts\Activate.ps1
+            python -m pip install -q --upgrade pip
+            echo "started installing cli beta" 
+            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+            echo "***************installed cli beta*******************" 
+            echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
                      
       - name: Check out repository
         uses: actions/checkout@v2
@@ -23,7 +37,7 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@oidc-support'
+        uses: 'azure/login@oidc-support-ps'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
