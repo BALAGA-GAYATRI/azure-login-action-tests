@@ -80,7 +80,7 @@ jobs:
       - name: Installing Az.accounts for powershell
         shell: pwsh
         run: |
-            Install-Module -Name Az.Accounts -Force -Repository PSGallery
+            Install-Module -Name Az.Accounts -Force -AllowClobber -Repository PSGallery
 
       - name: 'Az CLI login with subscription'
         uses: azure/login@releases/v1
