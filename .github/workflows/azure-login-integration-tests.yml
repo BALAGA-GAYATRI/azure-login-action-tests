@@ -5,11 +5,12 @@ on: workflow_dispatch
 #       - '.github/workflows/run-azure-login-action-integration-tests.yml'
 
 jobs: 
-  az-login-test:
+
+  az-login-test-non-oidc:
     runs-on: windows-latest
     steps:
       - name: 'Az CLI login with subscription'
-        uses: azure/login@v1
+        uses: azure/login@releases/v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
@@ -18,7 +19,7 @@ jobs:
 #          az webapp list
           
       - name: 'Az CLI login without subscription'
-        uses: azure/login@v1
+        uses: azure/login@releases/v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_NO_SUB }}
           allow-no-subscriptions: true
@@ -26,11 +27,11 @@ jobs:
       - run: |
           az account show
           
-#       - name: 'Azure PowerShell login with subscription'
-#         uses: azure/login@v1
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
-#           enable-AzPSSession: true
+      - name: 'Azure PowerShell login with subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
           
       - uses: azure/powershell@v1
         with:
@@ -48,4 +49,80 @@ jobs:
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
+
+  az-login-test-oidc:
+
+    runs-on: windows-latest
+    steps:
+      # windows CLI installation 
+      - name: Install CLI-beta
+        run: |
+              cd ../..
+              $CWD = Convert-Path .
+              echo $CWD
+              python --version
+              python -m venv oidc-venv
+              . .\oidc-venv\Scripts\Activate.ps1
+              python -m pip install -q --upgrade pip
+              echo "started installing cli beta" 
+              pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+              echo "installed cli beta" 
+              echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
+
+      - name: Installing preview Az.accounts for powershell
+        shell: pwsh
+        run: |
+          cd ../../oidc-venv
+          Invoke-WebRequest -Uri https://azposhpreview.blob.core.windows.net/public/Az.Accounts.2.6.0.nupkg -outfile "Az.Accounts.2.6.0.nupkg"
+          Register-PSRepository -Name LocalPSRepo -SourceLocation "$(pwd)" -ScriptSourceLocation "$(pwd)" -InstallationPolicy Trusted
+          Install-Module Az.Accounts -Repository LocalPSRepo
+
+      - name: 'Az CLI login with subscription'
+        uses: azure/login@releases/v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+          
+      - run: |
+          az account show
+#          az webapp list
+          
+      - name: 'Az CLI login without subscription'
+        uses: azure/login@releases/v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          allow-no-subscriptions: true
+          
+      - run: |
+          az account show
+          
+      - name: 'Azure PowerShell login with subscription'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+          enable-AzPSSession: true
+          
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: "Get-AzContext"
+          azPSVersion: "latest"
+          
+      - name: 'Azure PowerShell login without subscription'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          enable-AzPSSession: true
+          allow-no-subscriptions: true
+        
+      - uses: azure/powershell@v1
+        with:
+          inlineScript: "Get-AzContext"
+          azPSVersion: "latest"
+          
+    
           
