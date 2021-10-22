@@ -12,7 +12,7 @@ jobs:
       - name: Installing Az.accounts for powershell
         shell: pwsh
         run: |
-               Install-Module Az.Accounts -Repository LocalPSRepo
+            Install-Module -Name Az.Accounts -Repository PSGallery
 
       - name: 'Az CLI login with subscription'
         uses: azure/login@releases/v1
