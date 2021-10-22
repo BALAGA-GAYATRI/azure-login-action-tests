@@ -74,9 +74,10 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          inlineScript: |
-               Get-AzResourceGroup
-          azPSVersion: "latest"
+          with:
+              inlineScript: |
+                  Get-AzResourceGroup
+              azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -98,9 +99,10 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          inlineScript: |
-               Get-AzResourceGroup
-          azPSVersion: "latest"
+          with:
+              inlineScript: |
+                  Get-AzResourceGroup
+              azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -151,9 +153,10 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          inlineScript: |
-               Get-AzResourceGroup
-          azPSVersion: "latest"
+          with:
+              inlineScript: |
+                  Get-AzResourceGroup
+              azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -173,9 +176,10 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          inlineScript: |
-               Get-AzResourceGroup
-          azPSVersion: "latest"
+          with:
+              inlineScript: |
+                  Get-AzResourceGroup
+              azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -197,9 +201,10 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          inlineScript: |
-               Get-AzResourceGroup
-          azPSVersion: "latest"
+          with:
+              inlineScript: |
+                  Get-AzResourceGroup
+              azPSVersion: "latest"
         - run: |
               az account show
               az logout
