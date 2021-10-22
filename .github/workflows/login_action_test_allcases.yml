@@ -54,7 +54,7 @@ jobs:
           with:
              inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -74,10 +74,9 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          with:
-             inlineScript: |
+          inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -99,10 +98,9 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          with:
-             inlineScript: |
+          inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -153,10 +151,9 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          with:
-             inlineScript: |
+          inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -176,10 +173,9 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          with:
-             inlineScript: |
+          inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
@@ -201,10 +197,9 @@ jobs:
 
         - name: 'Get RG with powershell action'
           uses: azure/powershell@v1
-          with:
-             inlineScript: |
+          inlineScript: |
                Get-AzResourceGroup
-               azPSVersion: "latest"
+             azPSVersion: "latest"
         - run: |
               az account show
               az logout
