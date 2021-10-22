@@ -34,7 +34,8 @@ jobs:
         - uses: actions/checkout@v2
 
         - name: OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
-          uses: azure/login@releases/v1 #${{env.ACTION-NAME}}
+          uses: azure/login@releases/v1
+          continue-on-error: true   #${{env.ACTION-NAME}}
           with:
             client-id: ${{ secrets.AZURE_CLIENTID }}
             tenant-id: ${{ secrets.AZURE_TENANTID }}
@@ -61,6 +62,7 @@ jobs:
 
         - name: non-OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}      
         - run: |
@@ -68,6 +70,7 @@ jobs:
 
         - name: non-OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
             enable-AzPSSession: true
@@ -84,6 +87,7 @@ jobs:
 
         - name: non-OIDC login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
             environment: 'AzureChinaCloud'
@@ -92,6 +96,7 @@ jobs:
 
         - name: non-OIDC login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
             environment: 'AzureChinaCloud'
@@ -163,6 +168,7 @@ jobs:
 
         - name: non-OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}      
         - run: |
@@ -170,6 +176,7 @@ jobs:
 
         - name: non-OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
             enable-AzPSSession: true
@@ -186,6 +193,7 @@ jobs:
 
         - name: non-OIDC login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
             environment: 'AzureChinaCloud'
@@ -194,6 +202,7 @@ jobs:
 
         - name: non-OIDC login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
           uses: azure/login@releases/v1
+          continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
             environment: 'AzureChinaCloud'
@@ -265,6 +274,7 @@ jobs:
 
       - name: non-OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
         uses: azure/login@releases/v1
+          continue-on-error: true  
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}      
       - run: |
@@ -272,6 +282,7 @@ jobs:
 
       - name: non-OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
         uses: azure/login@releases/v1
+          continue-on-error: true  
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true
@@ -289,6 +300,7 @@ jobs:
 
       - name: non-OIDC login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud)
         uses: azure/login@releases/v1
+          continue-on-error: true  
         with:
           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
           environment: 'AzureChinaCloud'
@@ -297,6 +309,7 @@ jobs:
 
       - name: non-OIDC login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
         uses: azure/login@releases/v1
+          continue-on-error: true  
         with:
           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
           environment: 'AzureChinaCloud'
