@@ -275,11 +275,11 @@ macos-latest:
         enable-AzPSSession: true
    
     - name: 'Get RG with powershell action'
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Get-AzResourceGroup
-             azPSVersion: "latest"
+      uses: azure/powershell@v1
+      with:
+         inlineScript: |
+           Get-AzResourceGroup
+           azPSVersion: "latest"
     - run: |
           az account show    
           az logout
@@ -300,12 +300,12 @@ macos-latest:
         environment: 'AzureChinaCloud'
         enable-AzPSSession: true
         
-     - name: 'Get RG with powershell action'
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Get-AzResourceGroup
-             azPSVersion: "latest"
+    - name: 'Get RG with powershell action'
+      uses: azure/powershell@v1
+      with:
+         inlineScript: |
+           Get-AzResourceGroup
+           azPSVersion: "latest"
              
     - run: |
          az account show  
