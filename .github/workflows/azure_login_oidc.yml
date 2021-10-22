@@ -24,7 +24,10 @@ jobs:
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            
       - name: 'Az CLI login'
-        uses: 'azure/login@releases/v1'
+                
+        
+        uses: azure/login@releases/v1
+     continue-on-error: true
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
