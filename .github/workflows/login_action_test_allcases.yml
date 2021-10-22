@@ -1,6 +1,7 @@
 name: Run  azlogin checks for all cases
 on: workflow_dispatch
-
+env:
+ ACTION-NAME: 'azure/login@oidc-support'
 Windows-latest:
     runs-on: windows-latest
     steps:
@@ -31,7 +32,7 @@ Windows-latest:
       - uses: actions/checkout@v2
       
       - name: OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
-        uses: 'azure/login@oidc-support'
+        uses: env.ACTION-NAME
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
