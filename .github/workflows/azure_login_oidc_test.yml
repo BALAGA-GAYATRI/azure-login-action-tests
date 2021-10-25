@@ -23,19 +23,19 @@ jobs:
 #             pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
 #             echo "***************installed cli beta*******************" 
 #             echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
-      # ubuntu/macos installation
-#       - name: Installing CLI-beta for OIDC and apps dependencies 
-#         run: |
-#            cd ../..
-#            CWD="$(pwd)"
-#            python3 -m venv oidc-venv
-#            . oidc-venv/bin/activate
-#            echo "***********activated environment**********" 
-#            python3 -m pip install --upgrade pip
-#            echo "***************started installing cli beta*******************" 
-#            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
-#            echo "***************installed cli beta*******************"    
-#            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH   
+#       ubuntu/macos installation
+      - name: Installing CLI-beta for OIDC and apps dependencies 
+        run: |
+           cd ../..
+           CWD="$(pwd)"
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "***********activated environment**********" 
+           python3 -m pip install --upgrade pip
+           echo "***************started installing cli beta*******************" 
+           pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+           echo "***************installed cli beta*******************"    
+           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH   
       # common 
 #       - name: Installing preview Az.accounts for powershell
 #         shell: pwsh
@@ -54,11 +54,11 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@oidc-support'
+        uses: 'azure/login@oidc-support'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}     
+          subscription-id: "gayari" #${{ secrets.AZURE_SUBSCRIPTIONID }}     
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
           #allow-no-subscriptions: true
 #           enable-AzPSSession: true
