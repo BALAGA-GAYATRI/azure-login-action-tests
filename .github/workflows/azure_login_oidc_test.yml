@@ -54,7 +54,7 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'azure/login@oidc-support'
+        uses: 'azure/login@oidc-support-logs'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
