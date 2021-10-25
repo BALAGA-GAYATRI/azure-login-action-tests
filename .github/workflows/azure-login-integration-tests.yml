@@ -2,7 +2,7 @@ name: Run Azure Login Integration Tests
 on: 
   workflow_dispatch:
   schedule:
-    - cron:  '0 */4 * * *'
+    - cron:  '0 */3 * * *'
 permissions:
       id-token: write
       contents: write
