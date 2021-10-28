@@ -54,11 +54,11 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'azure/login@oidc-support-logs'
+        uses: 'azure/login@v1.4.0'
         with:
-          client-id: ${{ secrets.AZURE_CLIENTID }}
+          client-id: 8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}     
+          subscription-id: c00d16c7-6c1f-4c03-9be1-6934a4c49682 #${{ secrets.AZURE_SUBSCRIPTIONID }}     
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
           #allow-no-subscriptions: true
 #           enable-AzPSSession: true
