@@ -140,7 +140,7 @@ jobs:
         continue-on-error: true
           
   slack-post-result:
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
         continue-on-error: true
         needs: [az-login-test-non-oidc, az-login-test-oidc]
         steps:
