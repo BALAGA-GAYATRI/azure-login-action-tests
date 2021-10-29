@@ -111,7 +111,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
           enable-AzPSSession: true
           
       - uses: azure/powershell@v1
@@ -142,7 +142,7 @@ jobs:
             id: slack_report
             run: |
               TITLE="Login action OIDC flow tests update - "
-              DATEVAR=`date "+%d/%m/%Y"`
+              DATEVAR=`date "+%d/%m/%YT%H:%M:%S"`
               TITLE="${TITLE}${DATEVAR}"
               REPORT="${TITLE}\r\nLink to run - https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\r\n" 
               RUN_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
