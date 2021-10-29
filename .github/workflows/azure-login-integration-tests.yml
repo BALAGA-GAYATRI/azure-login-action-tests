@@ -11,6 +11,7 @@ jobs:
 
   az-login-test-non-oidc:
     runs-on: windows-latest
+    continue-on-error: true
     steps:
       - name: 'Az CLI login with subscription'
         uses: azure/login@v1.4.0
@@ -56,6 +57,7 @@ jobs:
   az-login-test-oidc:
 
     runs-on: windows-latest
+    continue-on-error: true
     steps:
       # windows CLI installation 
       - name: Install CLI-beta
@@ -134,6 +136,7 @@ jobs:
           
   slack-post-result:
         runs-on: windows-latest
+        continue-on-error: true
         needs: [az-login-test-non-oidc, az-login-test-oidc]
         steps:
           - name: Create slack post
