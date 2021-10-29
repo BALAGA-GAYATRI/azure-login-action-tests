@@ -57,7 +57,6 @@ jobs:
   az-login-test-oidc:
 
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       # windows CLI installation 
       - name: Install CLI-beta
@@ -92,7 +91,6 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
-        continue-on-error: true
         
       - run: |
           az account show
@@ -104,7 +102,6 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           allow-no-subscriptions: true
-        continue-on-error: true
           
       - run: |
           az account show
@@ -116,13 +113,11 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
           enable-AzPSSession: true
-        continue-on-error: true
-         
+          
       - uses: azure/powershell@v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
-        continue-on-error: true
           
       - name: 'Azure PowerShell login without subscription'
         uses: azure/login@v1.4.0
@@ -131,13 +126,11 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           enable-AzPSSession: true
           allow-no-subscriptions: true
-        continue-on-error: true
         
       - uses: azure/powershell@v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
-        continue-on-error: true
           
   slack-post-result:
         runs-on: ubuntu-latest
