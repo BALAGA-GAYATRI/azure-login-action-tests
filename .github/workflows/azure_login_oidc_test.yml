@@ -59,6 +59,7 @@ jobs:
           client-id: ba719d67-d880-40b0-926f-b21ed26856b0 #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #${{ secrets.AZURE_CLIENTID }}
           tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47 #${{ secrets.AZURE_TENANTID }}
           subscription-id: c00d16c7-6c1f-4c03-9be1-6934a4c49682 #${{ secrets.AZURE_SUBSCRIPTIONID }}     
+          audience: 'api:ADToken'
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
           #allow-no-subscriptions: true
 #           enable-AzPSSession: true
