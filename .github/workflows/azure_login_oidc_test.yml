@@ -54,7 +54,7 @@ jobs:
           echo $PATH
           
       - name: 'Az CLI login'
-        uses: 'azure/login@v1.4.0'
+        uses: 'azure/login@master-logs-working'
         with:
           client-id: ba719d67-d880-40b0-926f-b21ed26856b0 #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #${{ secrets.AZURE_CLIENTID }}
           tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47 #${{ secrets.AZURE_TENANTID }}
