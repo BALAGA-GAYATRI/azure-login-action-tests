@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 permissions:
       id-token: write
-      contents: write
+#       contents: write
 jobs: 
   az-login-test:
     runs-on: ubuntu-latest
