@@ -4,8 +4,8 @@ on: workflow_dispatch
 #            py -3.10 -m venv oidc-venv
 
 permissions:
-      id-token: write
-      contents: write
+      id_token: write
+#       contents: write
 jobs: 
   az-login-test:
     runs-on: ubuntu-latest
