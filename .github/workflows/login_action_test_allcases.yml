@@ -258,24 +258,24 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
 
-      - name: OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
-        uses: azure/login@releases/v1
-        continue-on-error: true
-        with:
-          client-id: ${{ secrets.AZURE_CLIENTID }}
-          tenant-id: ${{ secrets.AZURE_TENANTID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
-          enable-AzPSSession: true
+#       - name: OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
+#         uses: azure/login@releases/v1
+#         continue-on-error: true
+#         with:
+#           client-id: ${{ secrets.AZURE_CLIENTID }}
+#           tenant-id: ${{ secrets.AZURE_TENANTID }}
+#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+#           enable-AzPSSession: true
 
-      - name: 'Get RG with powershell action'
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Get-AzResourceGroup
-           azPSVersion: "latest"
-      - run: |
-              az account show
-              az logout
+#       - name: 'Get RG with powershell action'
+#         uses: azure/powershell@v1
+#         with:
+#            inlineScript: |
+#              Get-AzResourceGroup
+#            azPSVersion: "latest"
+#       - run: |
+#               az account show
+#               az logout
 
       - name: non-OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
         uses: azure/login@releases/v1
@@ -285,22 +285,22 @@ jobs:
       - run: |
             az account show 
 
-      - name: non-OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
-        uses: azure/login@releases/v1
-        continue-on-error: true  
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+#       - name: non-OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
+#         uses: azure/login@releases/v1
+#         continue-on-error: true  
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#           enable-AzPSSession: true
 
-      - name: 'Get RG with powershell action'
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Get-AzResourceGroup
-           azPSVersion: "latest"
-      - run: |
-            az account show    
-            az logout
+#       - name: 'Get RG with powershell action'
+#         uses: azure/powershell@v1
+#         with:
+#            inlineScript: |
+#              Get-AzResourceGroup
+#            azPSVersion: "latest"
+#       - run: |
+#             az account show    
+#             az logout
 
 
       - name: non-OIDC login to Azure China  Cloud with CLI ( evironment variable set to  AzureChinaCloud)
@@ -312,20 +312,20 @@ jobs:
       - run: |
             az account show  
 
-      - name: non-OIDC login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
-        uses: azure/login@releases/v1
-        continue-on-error: true  
-        with:
-          creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
-          environment: 'AzureChinaCloud'
-          enable-AzPSSession: true
+#       - name: non-OIDC login to Azure China  Cloud with Az Powershell (  evironment variable set to  AzureChinaCloud  and  enableAzPSSession true)
+#         uses: azure/login@releases/v1
+#         continue-on-error: true  
+#         with:
+#           creds: ${{ secrets.AZURE_CHINA_GOV_CLOUD_CREDENTIALS }}
+#           environment: 'AzureChinaCloud'
+#           enable-AzPSSession: true
 
-      - name: 'Get RG with powershell action'
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Get-AzResourceGroup
-           azPSVersion: "latest"
+#       - name: 'Get RG with powershell action'
+#         uses: azure/powershell@v1
+#         with:
+#            inlineScript: |
+#              Get-AzResourceGroup
+#            azPSVersion: "latest"
 
       - run: |
            az account show  
