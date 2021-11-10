@@ -1,5 +1,5 @@
 name: Run Azure Login with OIDC(testing)
-on: [push,workflow_dispatch]
+on: [workflow_dispatch]
 # D:\a\azure-login-action-tests\azure-login-action-tests\
 #            py -3.10 -m venv oidc-venv
 
