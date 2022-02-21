@@ -10,7 +10,7 @@ permissions:
 jobs: 
 
   az-login-test-non-oidc:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 #     continue-on-error: true
     steps:
       - name: 'Az CLI login with subscription'
