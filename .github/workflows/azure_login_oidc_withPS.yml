@@ -1,4 +1,4 @@
-name: Run Azure Login with OIDC with PS
+name: PS action test
 on: workflow_dispatch
 
 permissions:
