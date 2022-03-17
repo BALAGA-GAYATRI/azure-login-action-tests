@@ -19,10 +19,12 @@ jobs:
                    PARAM="test"
                    echo $PARAM
                    echo "::set-output name=myparam::$PARAM"
+            azPSVersion: latest
 
       - name: Read Parameter
         uses: azure/powershell@v1
         with:
            inlineScript: |
                   echo "${{ steps.tasksetparameter.outputs.myparam }}"
-  
+           
+           azPSVersion: latest
