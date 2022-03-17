@@ -24,7 +24,7 @@ jobs:
         uses: azure/powershell@v1
         with:
            inlineScript: |
-             echo "${{ steps.tasksetparameter.outputs.myparam 
+             echo "${{ steps.tasksetparameter.outputs.myparam }}" 
            azPSVersion: latest
 #         shell: bash
 #         run: |
