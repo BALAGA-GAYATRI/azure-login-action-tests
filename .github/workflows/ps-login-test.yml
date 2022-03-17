@@ -13,19 +13,16 @@ jobs:
   
       - name: Set Parameter
         id: tasksetparameter
-#         uses: azure/powershell@v1
-#         with:
-#             inlineScript: |
-        shell: pwsh
-        run: |
-                  $PARAM = "test"
-                  Write-Output ::set-output name=myparam::$( $PARAM)
+        uses: azure/powershell@v1
+        with:
+            inlineScript: |
+                   PARAM="test"
+                   echo $PARAM
+                   echo "::set-output name=myparam::$PARAM"
 
       - name: Read Parameter
-#         uses: azure/powershell@v1
-#         with:
-#            inlineScript: |
-        shell: pwsh
-        run: |
-             Write-Output "${{ steps.tasksetparameter.outputs.myparam }}"
-        
+        uses: azure/powershell@v1
+        with:
+           inlineScript: |
+                  echo "${{ steps.tasksetparameter.outputs.myparam }}"
+  
