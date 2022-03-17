@@ -22,9 +22,11 @@ jobs:
             azPSVersion: latest
 
       - name: Read Parameter
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
+#         uses: azure/powershell@v1
+#         with:
+#            inlineScript: |
+        shell: bash
+        run: |
                   echo "${{ steps.tasksetparameter.outputs.myparam }}"
            
-           azPSVersion: latest
+#    azPSVersion: latest
