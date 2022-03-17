@@ -23,7 +23,7 @@ jobs:
         uses: azure/powershell@v1
         with:
            inlineScript: |
-             Write-Output '${{ steps.task-set-parameter.outputs.my_param}}'
+             Write-Output "${{ steps.task-set-parameter.outputs.my_param }}"
            azPSVersion: "latest"
         
 #       - name: Installing CLI-beta for OIDC
