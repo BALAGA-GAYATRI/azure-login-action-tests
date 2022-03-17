@@ -13,11 +13,11 @@ jobs:
   
       - name: Set Parameter
         id: tasksetparameter
-        uses: azure/powershell@v1
-        with:
-            inlineScript: |
+#         uses: azure/powershell@v1
+#         with:
+#             inlineScript: |
+        run: |
                   Write-Output ::set-output name=myparam::"test"
-            azPSVersion: "latest"
 
       - name: Read Parameter
 #         uses: azure/powershell@v1
