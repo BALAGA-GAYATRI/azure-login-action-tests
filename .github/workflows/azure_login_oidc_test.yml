@@ -2,7 +2,7 @@ name: Run Azure Login with OIDC(testing)
 on: [workflow_dispatch, pull_request]
 # D:\a\azure-login-action-tests\azure-login-action-tests\
 #            py -3.10 -m venv oidc-venv
-
+#testing...
 permissions:
       id-token: write
       contents: read
