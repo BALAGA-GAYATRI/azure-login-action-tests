@@ -11,12 +11,12 @@ jobs:
       - name: Set Parameter
         id: task-set-parameter
 #         uses: azure/powershell@v1
-        run:
-#             inlineScript: |
+        run: |
+               PARAM="test"
+               echo $PARAM
+               echo "::set-output name=my_param::$PARAM"
+               #             inlineScript: |
 #               Write-Output ::set-output name=my_param::"test"
-              PARAM="test"
-              echo $PARAM
-              echo "::set-output name=my_param::$PARAM"
 #             azPSVersion: "latest"
 
       - name: Read Parameter
