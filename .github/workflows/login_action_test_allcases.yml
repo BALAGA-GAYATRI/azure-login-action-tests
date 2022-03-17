@@ -62,8 +62,8 @@ jobs:
               az logout
 
         - name: non-OIDC Login to Azure Public Cloud with CLI (no enableAzPSSession )
-          uses: azure/login@releases/v1
-          continue-on-error: true  
+          uses: azure/login@v1.4.3
+#           continue-on-error: true  
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}      
         - run: |
