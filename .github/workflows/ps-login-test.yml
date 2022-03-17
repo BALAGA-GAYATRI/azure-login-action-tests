@@ -16,15 +16,15 @@ jobs:
         uses: azure/powershell@v1
         with:
             inlineScript: |
-                   PARAM="test"
+                   $PARAM = "test"
                    echo $PARAM
-                   echo "::set-output name=myparam::$PARAM"
+                   echo ::set-output name=myparam::$( $PARAM)
             azPSVersion: latest
 
       - name: Read Parameter
         uses: azure/powershell@v1
         with:
            inlineScript: |
-                  echo "${{ steps.tasksetparameter.outputs.myparam }}"
+                  echo ${{ steps.tasksetparameter.outputs.myparam }}
            
            azPSVersion: latest
