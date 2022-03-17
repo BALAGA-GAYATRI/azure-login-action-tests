@@ -8,8 +8,8 @@ jobs:
   az-login-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+#       - name: Check out repository
+#         uses: actions/checkout@v2
   
       - name: Set Parameter
         id: tasksetparameter
