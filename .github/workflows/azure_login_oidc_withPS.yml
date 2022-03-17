@@ -22,7 +22,7 @@ jobs:
       - name: Read Parameter
 #         uses: azure/powershell@v1
         run: |
-             echo "${{ steps.tasksetparameter.ouputs.myparam }}"
+             echo "${{ steps.tasksetparameter.outputs.myparam }}"
              #         with:
 #            inlineScript: |
 #            azPSVersion: "latest"
