@@ -18,7 +18,7 @@ jobs:
             inlineScript: |
                    $PARAM = "test"
                    echo $PARAM
-                   echo ::set-output name=myparam::$( $PARAM)
+                   echo ::set-output name=myparam::$PARAM
             azPSVersion: latest
 
       - name: Read Parameter
