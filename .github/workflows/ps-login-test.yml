@@ -16,9 +16,8 @@ jobs:
         uses: azure/powershell@v1
         with:
             inlineScript: |
-                   $PARAM = "test"
-                   echo $PARAM
-                   echo ::set-output name=myparam::$PARAM
+                  $param = ("test")
+                  echo ::set-output name=myparam::$( $param)
             azPSVersion: latest
 
       - name: Read Parameter
