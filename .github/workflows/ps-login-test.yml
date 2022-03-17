@@ -10,6 +10,14 @@ jobs:
     steps:
 #       - name: Check out repository
 #         uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+      - name: Set outputs
+        id: vars
+        shell: pwsh
+        run: echo "::set-output name=production::true"
+      - name: Check outputs
+        shell: pwsh
+        run: echo ${{ steps.vars.outputs.production }}
   
       - name: Set Parameter
         id: tasksetparameter
