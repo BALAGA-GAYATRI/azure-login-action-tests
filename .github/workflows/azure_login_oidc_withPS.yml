@@ -21,10 +21,10 @@ jobs:
 
       - name: Read Parameter
 #         uses: azure/powershell@v1
-        run:
-#         with:
+        run: |
+             echo "${{ steps.tasksetparameter.ouputs.myparam }}"
+             #         with:
 #            inlineScript: |
-             echo "${{ steps.tasksetparameter.ouputs.myparam}}"
 #            azPSVersion: "latest"
 #       - name: Installing CLI-beta for OIDC
 #         run: |
