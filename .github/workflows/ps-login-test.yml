@@ -19,7 +19,7 @@ jobs:
         shell: pwsh
         run: |
                   $PARAM = "test"
-                  Write-Output ::set-output name=myparam::$PARAM
+                  Write-Output ::set-output name=myparam::$( $PARAM)
 
       - name: Read Parameter
 #         uses: azure/powershell@v1
