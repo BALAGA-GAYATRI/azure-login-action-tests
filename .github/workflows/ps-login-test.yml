@@ -26,5 +26,5 @@ jobs:
 #            inlineScript: |
         shell: pwsh
         run: |
-             Write-Output '${{ steps.tasksetparameter.outputs.myparam }}'
+             Write-Output '{{ steps.tasksetparameter.outputs.myparam }}'
         
