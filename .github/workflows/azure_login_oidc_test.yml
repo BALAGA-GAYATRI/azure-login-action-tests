@@ -1,7 +1,6 @@
 name: Run Azure Login with OIDC(testing)
 on: [workflow_dispatch, pull_request]
-# D:\a\azure-login-action-tests\azure-login-action-tests\
-#            py -3.10 -m venv oidc-venv
+
 
 permissions:
       id-token: write
@@ -13,36 +12,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         
-      - name: testing files-1
-        run: |
-          which az
-          echo $PATH
-#  master-logs-working         
       - name: 'Az CLI login'
         uses: 'azure/login@v1'
         with:
-          client-id:  hrgfyergfues #8dd6fab2-6949-4ed0-9635-6d546707c82c #ba719d67-d880-40b0-926f-b21ed26856b0 #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #8751f16d-d2bc-49ea-8c19-1fd2b19b22bf #${{ secrets.AZURE_CLIENTID }}
-          tenant-id:  72f988bf-86f1-41af-91ab-2d7cd011db47 #72f988bf-86f1-41af-91ab-2d7cd011db47 #${{ secrets.AZURE_TENANTID }}
-          subscription-id: c00d16c7-6c1f-4c03-9be1-6934a4c49682 #c00d16c7-6c1f-4c03-9be1-6934a4c49682 #${{ secrets.AZURE_SUBSCRIPTIONID }}     
-#           audience: 'api:ADToken'
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS_LATEST }}
           #allow-no-subscriptions: true
-          enable-AzPSSession: true
+#           enable-AzPSSession: true
           #environment: azurestack
-          
-      - name: Check out repository
-        uses: actions/checkout@v2
-  
-      - name: testing files-2
-        run: |
-            which az
-            ls
-              
-      - run: |
-          az account show
-          az group list
-          pwd 
-    
+   
       # windows CLI installation     
 #       - run: |
 #             cd ../..
