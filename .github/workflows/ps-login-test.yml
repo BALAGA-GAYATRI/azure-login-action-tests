@@ -20,9 +20,10 @@ jobs:
             azPSVersion: "latest"
 
       - name: Read Parameter
-        uses: azure/powershell@v1
-        with:
-           inlineScript: |
-             Write-Output ${{ steps.tasksetparameter.outputs.myparam }}
-           azPSVersion: "latest"
+#         uses: azure/powershell@v1
+#         with:
+#            inlineScript: |
+        shell: pwsh
+        run: |
+             Write-Output '${{ steps.tasksetparameter.outputs.myparam }}'
         
