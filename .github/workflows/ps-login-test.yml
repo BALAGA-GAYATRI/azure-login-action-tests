@@ -47,16 +47,16 @@ jobs:
 #           Register-PSRepository -Name LocalPSRepo -SourceLocation '/home/runner/work/oidc-venv' -ScriptSourceLocation '/home/runner/work/oidc-venv' -InstallationPolicy Trusted
 #           Install-Module Az.Accounts -Repository LocalPSRepo
           
-      - name: 'Az CLI login'
-        uses: azure/login@v1 #'balaga-gayatri/login@oidc-support-ps'
-        with:
-#           client-id: ${{ secrets.AZURE_CLIENTID }}
-#           tenant-id: ${{ secrets.AZURE_TENANTID }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
-          creds: ${{ secrets.AZURE_LATEST_CREDENTIALS }}
-#           allow-no-subscriptions: true
-          enable-AzPSSession: true
-#           environment: azureusgovernment
+#       - name: 'Az CLI login'
+#         uses: azure/login@v1 #'balaga-gayatri/login@oidc-support-ps'
+#         with:
+# #           client-id: ${{ secrets.AZURE_CLIENTID }}
+# #           tenant-id: ${{ secrets.AZURE_TENANTID }}
+# #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+#           creds: ${{ secrets.AZURE_LATEST_CREDENTIALS }}
+# #           allow-no-subscriptions: true
+#           enable-AzPSSession: true
+# #           environment: azureusgovernment
 
       - name: 'Create a RG with powershell action'
         uses: azure/powershell@v1
