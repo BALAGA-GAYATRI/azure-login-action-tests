@@ -24,15 +24,14 @@ jobs:
         uses: azure/powershell@v1
         with:
             inlineScript: |
-                  $param = ("test")
-                  echo ::set-output name=myparam::$( $param)
+                  echo "::set-output name=production::true"
             azPSVersion: latest
 
       - name: Read Parameter
         uses: azure/powershell@v1
         with:
            inlineScript: |
-             echo "${{ steps.tasksetparameter.outputs.myparam }}" 
+             echo ${{ steps.tasksetparameter.outputs.production }}
            azPSVersion: latest
 #         shell: bash
 #         run: |
