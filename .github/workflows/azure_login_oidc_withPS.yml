@@ -15,6 +15,7 @@ jobs:
 #             inlineScript: |
 #               Write-Output ::set-output name=my_param::"test"
               PARAM="test"
+              echo $PARAM
               echo "::set-output name=my_param::$PARAM"
 #             azPSVersion: "latest"
 
