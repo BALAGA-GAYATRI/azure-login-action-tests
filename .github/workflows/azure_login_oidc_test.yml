@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@dd6dbb6314a426c63b55c40e2123e5eea8c62f2f'
+        uses: 'balaga-gayatri/login@3a1423115cbfc65507919b91c9ae749a5cdae3a4'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
