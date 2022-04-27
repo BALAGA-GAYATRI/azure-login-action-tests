@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v2
         
       - name: 'Az CLI login'
-        uses: 'balaga-gayatri/login@3a1423115cbfc65507919b91c9ae749a5cdae3a4'
+        uses: 'azure/login@release-patch-1'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+          subscription-id: "yjsrgfudftior" #${{ secrets.AZURE_SUBSCRIPTIONID }}
 #           creds: ${{ secrets.AZURE_CREDENTIALS_LATEST }}
           #allow-no-subscriptions: true
 #           enable-AzPSSession: true
@@ -57,3 +57,4 @@ jobs:
 #           Invoke-WebRequest -Uri https://azposhpreview.blob.core.windows.net/public/Az.Accounts.2.6.0.nupkg -outfile "Az.Accounts.2.6.0.nupkg"
 #           Register-PSRepository -Name LocalPSRepo -SourceLocation "$(pwd)" -ScriptSourceLocation "$(pwd)" -InstallationPolicy Trusted
 #           Install-Module Az.Accounts -Repository LocalPSRepo
+# balaga-gayatri/login@3a1423115cbfc65507919b91c9ae749a5cdae3a4
