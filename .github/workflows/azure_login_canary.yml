@@ -18,8 +18,8 @@ jobs:
            . oidc-venv/bin/activate
            echo "***********activated virual environment**********" 
            python3 -m pip install --upgrade pip
-           echo "***************started installing cli beta******************
-           pip install --upgrade --pre azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge --no-cache-dir --upgrade-strategy=eager
+           echo "***************started installing cli beta******************"
+           pip3 install --upgrade --pre azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge --no-cache-dir --upgrade-strategy=eager
            echo "***************installed cli Edge build*******************"    
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
            az --version
