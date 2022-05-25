@@ -1,0 +1,72 @@
+name: Run Azure Login Canary Test
+on: workflow_dispatch
+
+permissions:
+      id-token: write
+      contents: read
+jobs: 
+  az-login-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing CLI-beta for OIDC and apps dependencies 
+        run: |
+           cd ../..
+           CWD="$(pwd)"
+           python3 -m venv oidc-venv
+           . oidc-venv/bin/activate
+           echo "***********activated virual environment**********" 
+           python3 -m pip install --upgrade pip
+           echo "***************started installing cli beta******************
+           pip3 install --upgrade --pre azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge --no-cache-dir --upgrade-strategy=eager*" 
+           echo "***************installed cli Edge build*******************"    
+           echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+           
+      - name: Check out repository
+        uses: actions/checkout@v2
+        
+      - name: 'Az CLI login'
+        uses: 'azure/login@v1'
+        with:
+#           client-id: ${{ secrets.AZURE_CLIENTID }}
+#           tenant-id: ${{ secrets.AZURE_TENANTID }}
+#           subscription-id: dfhdhg #${{ secrets.AZURE_SUBSCRIPTIONID }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          #allow-no-subscriptions: true
+#           enable-AzPSSession: true
+#           environment: azurestack
+   
+      # windows CLI installation     
+#       - run: |
+#             cd ../..
+#             $CWD = Convert-Path .
+#             echo $CWD
+#             python --version
+#             python -m venv oidc-venv
+#             . .\oidc-venv\Scripts\Activate.ps1
+#             python -m pip install -q --upgrade pip
+#             echo "started installing cli beta" 
+#             pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+#             echo "***************installed cli beta*******************" 
+#             echo "$CWD\oidc-venv\Scripts" >> $env:GITHUB_PATH
+#       ubuntu/macos installation
+#       - name: Installing CLI-beta for OIDC and apps dependencies 
+#         run: |
+#            cd ../..
+#            CWD="$(pwd)"
+#            python3 -m venv oidc-venv
+#            . oidc-venv/bin/activate
+#            echo "***********activated environment**********" 
+#            python3 -m pip install --upgrade pip
+#            echo "***************started installing cli beta*******************" 
+#            pip install -q --extra-index-url https://azcliprod.blob.core.windows.net/beta/simple/ azure-cli
+#            echo "***************installed cli beta*******************"    
+#            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH   
+      # common 
+#       - name: Installing preview Az.accounts for powershell
+#         shell: pwsh
+#         run: |
+#           cd ../../oidc-venv
+#           Invoke-WebRequest -Uri https://azposhpreview.blob.core.windows.net/public/Az.Accounts.2.6.0.nupkg -outfile "Az.Accounts.2.6.0.nupkg"
+#           Register-PSRepository -Name LocalPSRepo -SourceLocation "$(pwd)" -ScriptSourceLocation "$(pwd)" -InstallationPolicy Trusted
+#           Install-Module Az.Accounts -Repository LocalPSRepo
+# balaga-gayatri/login@3a1423115cbfc65507919b91c9ae749a5cdae3a4
