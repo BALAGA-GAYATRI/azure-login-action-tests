@@ -20,6 +20,7 @@ jobs:
            pip3 install --upgrade --pre azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge --no-cache-dir --upgrade-strategy=eager*" 
            echo "***************installed cli Edge build*******************"    
            echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
+           echo "az --version"
            
       - name: Check out repository
         uses: actions/checkout@v2
