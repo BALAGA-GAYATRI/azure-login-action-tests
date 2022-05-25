@@ -8,6 +8,8 @@ jobs:
   az-login-test:
     runs-on: ubuntu-latest
     steps:
+      - name : Check Az version before installing
+        run: az --version
       - name: Installing CLI-beta for OIDC and apps dependencies 
         run: |
            cd ../..
