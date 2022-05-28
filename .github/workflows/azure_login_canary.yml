@@ -10,7 +10,7 @@ jobs:
     steps:
       - name : Check Az version before installing
         run: az --version
-      - name: Installing CLI-beta for OIDC and apps dependencies 
+      - name: Installing Az CLI edge build 
         run: |
            cd ../..
            CWD="$(pwd)"
