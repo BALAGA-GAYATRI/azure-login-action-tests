@@ -2,9 +2,9 @@ name: Run Azure Login with OIDC(testing)
 on: [workflow_dispatch, pull_request]
 
 
-permissions:
-      id-token: write
-      contents: read
+# permissions:
+#       id-token: write
+#       contents: read
 jobs: 
   az-login-test:
     
