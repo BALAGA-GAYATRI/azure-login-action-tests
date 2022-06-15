@@ -9,7 +9,7 @@ jobs:
   az-login-test:
     
     permissions:
-      id-token: write
+#       id-token: write
       contents: read
     
     runs-on: ubuntu-latest
