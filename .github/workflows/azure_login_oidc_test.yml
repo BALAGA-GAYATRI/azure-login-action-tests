@@ -8,9 +8,9 @@ on: [workflow_dispatch, pull_request]
 jobs: 
   az-login-test:
     
-    permissions:
-#       id-token: write
-#       contents: read
+#     permissions:
+# #       id-token: write
+# #       contents: read
     
     runs-on: ubuntu-latest
     steps:
