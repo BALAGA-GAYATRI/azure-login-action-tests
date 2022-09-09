@@ -23,7 +23,7 @@ jobs:
           Install-Module Az.Accounts -repository PSGallery -force -Scope CurrentUser
           
       - name: 'Az CLI login'
-        uses: 'azure/login@v1.4.5'
+        uses: 'balaga-gayatri/login@releases/v1'
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
