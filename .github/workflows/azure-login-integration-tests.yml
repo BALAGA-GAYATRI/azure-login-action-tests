@@ -37,7 +37,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true
           
-      - uses: azure/powershell@v1.2.0
+      - uses: azure/powershell@releases/v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
@@ -49,7 +49,7 @@ jobs:
           enable-AzPSSession: true
           allow-no-subscriptions: true
         
-      - uses: azure/powershell@v1.2.0
+      - uses: azure/powershell@releases/v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
@@ -114,20 +114,20 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
           enable-AzPSSession: true
           
-      - uses: azure/powershell@v1
+      - uses: azure/powershell@releases/v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
           
       - name: 'Azure PowerShell login without subscription'
-        uses: azure/login@v1.4.5
+        uses: azure/login@releases/v1
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           enable-AzPSSession: true
           allow-no-subscriptions: true
         
-      - uses: azure/powershell@v1.2.0
+      - uses: azure/powershell@releases/v1
         with:
           inlineScript: "Get-AzContext"
           azPSVersion: "latest"
