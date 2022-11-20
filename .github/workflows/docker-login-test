@@ -1,0 +1,23 @@
+name: Docker login test
+on: 
+  [workflow_dispatch]
+
+env:
+  AZURE_WEBAPP_NAME: windowscontainerwebapp  # set this to your application's name
+  CONTAINER_REGISTRY: l2testscontainerregistry.azurecr.io  # set secret with Container Registry URL, example : xyz.azurecr.io 
+  
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      
+    - uses: azure/docker-login@v1
+      with:
+        login-server: l2testscontainerregistry.azurecr.io
+        username: ${{ secrets.L2TEST_ACR_USERNAME }}
+        password: ${{ secrets.L2TEST_ACR_PASSWORD }}
+    
+    - run: |
+        docker pull mcr.microsoft.com/azure-app-service/windows/canary:5.0-nanoserver
+        docker tag mcr.microsoft.com/azure-app-service/windows/canary:5.0-nanoserver ${{ env.CONTAINER_REGISTRY }}/containerwebapp/canaryreplica:latest
+        docker push ${{ env.CONTAINER_REGISTRY }}/containerwebapp/canaryreplica:latest
