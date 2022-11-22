@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     steps:
       
-    - uses: azure/docker-login@releases/v1
+    - uses: azure/docker-login@v1
       with:
         login-server: l2testscontainerregistry.azurecr.io
         username: ${{ secrets.L2TEST_ACR_USERNAME }}
